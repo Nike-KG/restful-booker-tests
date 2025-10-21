@@ -8,7 +8,7 @@ public  static class ConfigurationHelper
 
     public static IConfigurationRoot Config => _config ??= new ConfigurationBuilder()
         .SetBasePath(AppContext.BaseDirectory)
-        .AddJsonFile("Resources\\appsettings.json", optional: false, reloadOnChange: true)
+        .AddJsonFile(Path.Combine("Resources", "appsettings.json"), optional: false, reloadOnChange: true)
         .Build();
         
     }
