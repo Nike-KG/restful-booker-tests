@@ -1,0 +1,36 @@
+[
+  {
+    "firstname": "Alice",
+    "lastname": "Smith",
+    "totalprice": 120,
+    "depositpaid": true,
+    "bookingdates": {
+      "checkin": "2025-04-01",
+      "checkout": "2025-04-10"
+    },
+    "additionalneeds": "Breakfast"
+  },
+  {
+    "firstname": "Bob",
+    "lastname": "Jones",
+    "totalprice": 200,
+    "depositpaid": false,
+    "bookingdates": {
+      "checkin": "2025-05-01",
+      "checkout": "2025-05-15"
+    },
+    "additionalneeds": "Lunch"
+  },
+  {
+    "firstname": "Cute",
+    "lastname": "Cat",
+    "totalprice": 120,
+    "depositpaid": true,
+    "bookingdates": {
+      "checkin": "2025-04-12",
+      "checkout": "2025-04-25"
+    },
+    "additionalneeds": "Breakfast"
+  }
+
+]

@@ -1,0 +1,18 @@
+[
+  {
+    "id": 99999,
+    "payload": { "firstname": "X" },
+    "expectedStatus": 404
+  },
+  {
+    "id": 1,
+    "payload": {},
+    "expectedStatus": 400
+  }, 
+  {
+    "id": 1,
+    "payload": { "totalprice": "invalid" },
+    "expectedStatus": 503
+  }
+  
+]
