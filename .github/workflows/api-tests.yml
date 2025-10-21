@@ -19,6 +19,7 @@ jobs:
 
       - name: Restore & build
         run: ls
+        working-directory: RestfulBookerTests
 
       - name: Run tests
         run: dotnet test --configuration Release --no-build
