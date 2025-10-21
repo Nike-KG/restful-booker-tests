@@ -59,7 +59,7 @@ public class GetBookingFilterTests
         ids.Should().HaveCountGreaterThan(0);
     }
 
-    //combined filters
+    //combined filters - need to improve
     [Fact]
     public async Task Booking_GetByMultipleFilters_ShouldReturnMatchingIds()
     {

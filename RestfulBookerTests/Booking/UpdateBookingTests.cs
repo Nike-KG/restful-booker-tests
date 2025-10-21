@@ -51,6 +51,57 @@ public class UpdateBookingTests
         }
 
     [Fact]
+    public async Task Patch_SingleField_ShouldUpdateLastName()
+    {
+        // Arrange
+        var id = await CreateBookingAsync();
+
+        var patchPayload = new { lastname = "Petty" };
+        var patchResponse = await _client.PatchAsync($"booking/{id}", patchPayload);
+        patchResponse.IsSuccessful.Should().BeTrue("Booking patch should succeed");
+
+        // verify via GET.
+        var getResponse = await _client.GetAsync($"booking/{id}");
+        getResponse.IsSuccessful.Should().BeTrue("Booking retrieval should succeed");
+        var json = JsonDocument.Parse(getResponse.Content!);
+        json.RootElement.GetProperty("lastname").GetString().Should().Be("Petty", "Last name should be updated");
+    }
+
+    [Fact]
+    public async Task Patch_SingleField_ShouldUpdateTotalPrice()
+    {
+        // Arrange
+        var id = await CreateBookingAsync();
+
+        var patchPayload = new { totalprice = 250 };
+        var patchResponse = await _client.PatchAsync($"booking/{id}", patchPayload);
+        patchResponse.IsSuccessful.Should().BeTrue("Booking patch should succeed");
+
+        // verify via GET.
+        var getResponse = await _client.GetAsync($"booking/{id}");
+        getResponse.IsSuccessful.Should().BeTrue("Booking retrieval should succeed");
+        var json = JsonDocument.Parse(getResponse.Content!);
+        json.RootElement.GetProperty("totalprice").GetInt32().Should().Be(250, "Total price should be updated");
+    }
+
+    [Fact]
+    public async Task Patch_SingleField_ShouldUpdateDepositPaid()
+    {
+        // Arrange
+        var id = await CreateBookingAsync();
+
+        var patchPayload = new { depositpaid = false };
+        var patchResponse = await _client.PatchAsync($"booking/{id}", patchPayload);
+        patchResponse.IsSuccessful.Should().BeTrue("Booking patch should succeed");
+
+        // verify via GET.
+        var getResponse = await _client.GetAsync($"booking/{id}");
+        getResponse.IsSuccessful.Should().BeTrue("Booking retrieval should succeed"); 
+        var json = JsonDocument.Parse(getResponse.Content!);
+        json.RootElement.GetProperty("depositpaid").GetBoolean().Should().BeFalse("Deposit paid should be updated");
+    }
+
+    [Fact]
     public async Task Patch_MultipleFields_ShouldUpdateAllSpecified()
     {
             // Arrange

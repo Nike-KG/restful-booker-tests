@@ -12,7 +12,7 @@ public class DataDrivenTests
     // Create booking using data from JSON.
     [Theory]
     [MemberData(nameof(LoadBookingData))]
-    public async Task CreateBooking_WithVariousPayloads_ShouldSucceed(object payload)
+    public async Task CreateBooking_WithVariousPayloads_ShouldSucceed(object  payload)
     { 
         var response = await _client.PostAsync("booking", payload);
         response.IsSuccessful.Should().BeTrue("Booking creation should succeed");
