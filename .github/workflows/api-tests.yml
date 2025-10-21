@@ -1,5 +1,4 @@
 name: API Tests
-
 on:
   push:
     branches: [ main ]
@@ -19,7 +18,10 @@ jobs:
           dotnet-version: '8.0.x'
 
       - name: Restore & build
-        run: dotnet restore && dotnet build --configuration Release --no-restore
+        run: |
+            dotnet restore
+            dotnet build --configuration Release --no-restore
+        working-directory: src/RestfulBookerTests/src 
 
       - name: Run tests
         run: dotnet test --configuration Release --no-build
