@@ -5,7 +5,7 @@ using RestfulBooker.Tests.Dtos;
 
 namespace RestfulBooker.Tests.Api.Integration;
 
-public class E2EBookingFlowTest
+public class E2EBookingFlowTest : BaseApiTest
 {
     private readonly ApiClient _client = new();
 

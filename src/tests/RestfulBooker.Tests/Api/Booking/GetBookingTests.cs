@@ -4,13 +4,13 @@ using System.Text.Json;
 
 namespace RestfulBooker.Tests.Api.Booking;
 
-public class GetBookingTests
+public class GetBookingTests : BaseApiTest
 {
     private readonly ApiClient _client = new();
     private int createdBookingId;
 
     [OneTimeSetUp]
-    public async Task Setup()
+    public new async Task OneTimeSetup()
     {
         // Ensure there is at least one booking to filter against
         createdBookingId = await CreateSampleBookingAsync();
@@ -20,6 +20,7 @@ public class GetBookingTests
     [Test]
     public async Task Booking_GetByFirstName_ShouldReturnMatchingIds()
     {
+        _test.Info("Sending GET /booking?firstname=Jim");
         // Arrange & Act
         var response = await _client.GetAsync("booking?firstname=Jim");
 
@@ -33,6 +34,7 @@ public class GetBookingTests
     [Test]
     public async Task Booking_GetByLastName_ShouldReturnMatchingIds()
     {
+        _test.Info("Sending GET /booking?lastname=Brown");
         // Arrange & Act
         var response = await _client.GetAsync("booking?lastname=Brown");
 
@@ -46,6 +48,7 @@ public class GetBookingTests
     [Test]
     public async Task Booking_GetByCheckinDate_ShouldReturnMatchingIds()
     {
+        _test.Info("Sending GET /booking?checkin=2018-01-01");
         // Arrange & Act
         var response = await _client.GetAsync("booking?checkin=2018-01-01");
 
@@ -59,6 +62,7 @@ public class GetBookingTests
     [Test]
     public async Task Booking_GetByCheckoutDate_ShouldReturnMatchingIds()
     {
+        _test.Info("Sending GET /booking?checkout=2019-01-01");
         // Arrange & Act
         var response = await _client.GetAsync("booking?checkout=2019-01-01");
 
@@ -72,6 +76,7 @@ public class GetBookingTests
     [Test]
     public async Task Booking_GetByMultipleFilters_ShouldReturnMatchingIds()
     {
+        _test.Info("Sending GET /booking?firstname=Get&lastname=User");
         // Arrange & Act
         var response = await _client.GetAsync("booking?firstname=Get&lastname=User");
 
@@ -84,6 +89,7 @@ public class GetBookingTests
     [Test]
     public async Task Get_BookingIds_ShouldReturnArrayOfIds()
     {
+        _test.Info("Sending GET /booking");
         // Arrange
         var apiClient = new ApiClient();
 
@@ -105,6 +111,7 @@ public class GetBookingTests
     {
         // Arrange
         var id = createdBookingId;
+        _test.Info($"Sending GET /booking/{id}");
 
         var response = await _client.GetAsync($"booking/{id}", isWithCookieHeader: false);
         response.StatusCode.Should().Be(System.Net.HttpStatusCode.OK, "Getting a booking without authentication should return 200 OK");

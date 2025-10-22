@@ -4,7 +4,7 @@ using System.Diagnostics;
 
 namespace RestfulBooker.Tests.Api.Booking;
 
-public class PerformanceTests
+public class PerformanceTests : BaseApiTest
 {
     private readonly ApiClient _client = new();
    [Test]

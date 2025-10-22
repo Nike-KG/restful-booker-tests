@@ -4,7 +4,7 @@ using System.Text.Json;
 
 namespace RestfulBooker.Tests.Api.Booking;
 
-public class DeleteBookingTests
+public class DeleteBookingTests : BaseApiTest
 {
     private readonly ApiClient _client = new();
 
