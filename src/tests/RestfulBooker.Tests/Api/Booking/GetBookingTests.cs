@@ -26,7 +26,7 @@ public class GetBookingTests : BaseApiTest
     {
         _test?.Value?.Info("Sending GET /booking?firstname=Jim");
         // Arrange & Act
-        var response = await _client.GetAsync<List<BookingListDto>>("booking?firstname=Jim");
+        var response = await _client.GetAsync<List<BookinIdDto>>("booking?firstname=Jim");
 
         // Assert
         response.IsSuccessful.Should().BeTrue();
@@ -40,7 +40,7 @@ public class GetBookingTests : BaseApiTest
     {
         _test?.Value?.Info("Sending GET /booking?lastname=Brown");
         // Arrange & Act
-        var response = await _client.GetAsync<List<BookingListDto>>("booking?lastname=Brown");
+        var response = await _client.GetAsync<List<BookinIdDto>>("booking?lastname=Brown");
 
         // Assert
         response.IsSuccessful.Should().BeTrue();
@@ -54,7 +54,7 @@ public class GetBookingTests : BaseApiTest
     {
         _test?.Value?.Info("Sending GET /booking?checkin=2018-01-01");
         // Arrange & Act
-        var response = await _client.GetAsync<List<BookingListDto>>("booking?checkin=2018-01-01");
+        var response = await _client.GetAsync<List<BookinIdDto>>("booking?checkin=2018-01-01");
 
         // Assert
         response.IsSuccessful.Should().BeTrue();
@@ -68,7 +68,7 @@ public class GetBookingTests : BaseApiTest
     {
         _test?.Value?.Info("Sending GET /booking?checkout=2019-01-01");
         // Arrange & Act
-        var response = await _client.GetAsync<List<BookingListDto>>("booking?checkout=2019-01-01");
+        var response = await _client.GetAsync<List<BookinIdDto>>("booking?checkout=2019-01-01");
 
         // Assert
         response.IsSuccessful.Should().BeTrue();
@@ -82,7 +82,7 @@ public class GetBookingTests : BaseApiTest
     {
         _test?.Value?.Info("Sending GET /booking?firstname=Get&lastname=User");
         // Arrange & Act
-        var response = await _client.GetAsync<List<BookingListDto>>("booking?firstname=Get&lastname=User");
+        var response = await _client.GetAsync<List<BookinIdDto>>("booking?firstname=Get&lastname=User");
 
         // Assert
         response.IsSuccessful.Should().BeTrue();
@@ -96,7 +96,7 @@ public class GetBookingTests : BaseApiTest
         _test?.Value?.Info("Sending GET /booking?checking=2018-01-01&checkout=2019-01-01");
 
         // Arrange & Act
-        var response = await _client.GetAsync<List<BookingListDto>>("booking?checkin=2018-01-01&checkout=2019-01-01");
+        var response = await _client.GetAsync<List<BookinIdDto>>("booking?checkin=2018-01-01&checkout=2019-01-01");
 
         // Assert
         response.IsSuccessful.Should().BeTrue();
@@ -112,7 +112,7 @@ public class GetBookingTests : BaseApiTest
         var apiClient = new ApiClient();
 
         // Act
-        var response = await apiClient.GetAsync<List<BookingListDto>>("booking");
+        var response = await apiClient.GetAsync<List<BookinIdDto>>("booking");
 
         // Assert
         response.IsSuccessful.Should().BeTrue("API should return 200 OK");

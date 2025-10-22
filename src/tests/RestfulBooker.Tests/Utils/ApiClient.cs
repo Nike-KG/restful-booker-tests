@@ -15,9 +15,18 @@ public class ApiClient
         _client = new RestClient(baseUrl!);
     }
 
-    public async Task<RestResponse<List<T>>> GetAsync<T>(string resource)
+    public async Task<RestResponse<T>> GetAsync<T>(string resource)
     {
         return await GetAsync<T>(resource, true);
+    }
+
+    public async Task<RestResponse<T>> GetAsync<T>(string resource, bool isWithCookieHeader)
+    {
+        var request = new RestRequest(resource, Method.Get);
+        await AddDefaultHeaders(request, isWithCookieHeader);
+
+        var retryPolicy = CreateRetryPolicy<T>();
+        return await retryPolicy.ExecuteAsync(() => _client.ExecuteAsync<T>(request));
     }
 
     public async Task<RestResponse<T>> GetByIdAsync<T>(string resource)
@@ -33,15 +42,6 @@ public class ApiClient
         var retryPolicy = CreateRetryPolicy<T>();
 
         return await retryPolicy.ExecuteAsync(() => _client.ExecuteAsync<T>(request));
-    }
-
-    public async Task<RestResponse<List<T>>> GetAsync<T>(string resource, bool isWithCookieHeader)
-    {
-        var request = new RestRequest(resource, Method.Get);
-        await AddDefaultHeaders(request, isWithCookieHeader);
-
-        var retryPolicy = CreateRetryPolicy<List<T>>();
-        return await retryPolicy.ExecuteAsync(() => _client.ExecuteAsync<List<T>>(request));
     }
 
     public async Task<RestResponse<T>> PostAsync<T>(string resource, object body)
