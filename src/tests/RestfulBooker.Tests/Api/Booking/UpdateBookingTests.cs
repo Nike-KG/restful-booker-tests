@@ -110,12 +110,12 @@ public class UpdateBookingTests : BaseApiTest
     }
 
    [Test]
-    public async Task Patch_WithoutAuth_ShouldReturn401Or403()
+    public async Task Patch_WithoutAuth_ShouldReturn401()
     {
         var patchPayload = new { firstname = "NoAuth" };
         var response = await _client.PatchAsync<BookingDto>("booking/1", patchPayload, false);
         response.StatusCode.Should().
-            BeOneOf([HttpStatusCode.Forbidden,HttpStatusCode.Unauthorized],
-                "Patching without auth should return 403 Forbidden or 401 Unauthorized");
+            Be(HttpStatusCode.Unauthorized,
+                "Patching without auth should return 401 Unauthorized");
     }
 }

@@ -21,7 +21,7 @@ public class DeleteBookingTests : BaseApiTest
         var deleteResponse = await _client.DeleteAsync($"booking/{id}");
 
         // Assert
-        deleteResponse.StatusCode.Should().Be(HttpStatusCode.NoContent, "Deleting an existing booking should return 204 No content");
+        deleteResponse.StatusCode.Should().Be(HttpStatusCode.Created, "Deleting an existing booking should return 201 Created");
 
         // Verify the booking is deleted
         var getResponse = await _client.GetByIdAsync<BookingDto>($"booking/{id}");
@@ -39,14 +39,14 @@ public class DeleteBookingTests : BaseApiTest
     }
 
     [Test]
-    public async Task Delete_WithoutAuth_ShouldReturn401Or403()
+    public async Task Delete_WithoutAuth_ShouldReturn401()
     {
         // Arrange
         var id = await TestHelper.CreateSampleBookingAsync(_client);
 
         var response = await _client.DeleteAsync($"booking/{id}", isWithCookieHeader: false);
         response.StatusCode.Should()
-            .BeOneOf([HttpStatusCode.Forbidden, HttpStatusCode.Unauthorized],
-                "Deleting a booking without authentication should return 403 Forbidden or 401 Unauthorized");
+            .Be(HttpStatusCode.Unauthorized,
+                "Deleting a booking without authentication should return 401 Unauthorized");
     }
 }

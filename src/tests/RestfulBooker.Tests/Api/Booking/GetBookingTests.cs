@@ -93,7 +93,7 @@ public class GetBookingTests : BaseApiTest
     [Test]
     public async Task Booking_GetByMultipleFiltersDates_ShouldReturnMatchingIds()
     {
-        _test?.Value?.Info("Sending GET /booking?checking=2018-01-01&checkout=2025-12-01");
+        _test?.Value?.Info("Sending GET /booking?checkin=2025-01-01&checkout=2025-12-01");
 
         // Arrange & Act
         var response = await _client.GetAsync<List<BookinIdDto>>("booking?checkin=2025-01-01&checkout=2025-12-01");
@@ -123,7 +123,7 @@ public class GetBookingTests : BaseApiTest
     }
 
     [Test]
-    public async Task Get_WithoutAuth_ShouldReturn401Or403()
+    public async Task Get_WithoutAuth_ShouldReturn401()
     {
         // Arrange
         var id = createdBookingId;
@@ -131,7 +131,7 @@ public class GetBookingTests : BaseApiTest
 
         var response = await _client.GetAsync<BookingDto>($"booking/{id}", isWithCookieHeader: false);
         response.StatusCode.Should().
-            BeOneOf([HttpStatusCode.Forbidden, HttpStatusCode.Unauthorized],
-                "Getting a booking without authentication should return 401 Unauthorized or 403 Forbidden");
+            Be(HttpStatusCode.Unauthorized,
+                "Getting a booking without authentication should return 401 Unauthorized");
     }
 }
