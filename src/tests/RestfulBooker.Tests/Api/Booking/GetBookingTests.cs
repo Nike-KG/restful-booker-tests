@@ -1,5 +1,6 @@
 ﻿using FluentAssertions;
 using RestfulBooker.Tests.Utils;
+using System.Net;
 using System.Text.Json;
 
 namespace RestfulBooker.Tests.Api.Booking;
@@ -48,7 +49,7 @@ public class GetBookingTests : BaseApiTest
 
     //filter by checkin date
     [Test]
-    public async Task Booking_GetByCheckinDate_ShouldReturnMatchingIds()
+    public async Task Booking_GetByCheckinDate_ShouldReturnAllDatesGreaterThanOrEqual()
     {
         _test?.Value?.Info("Sending GET /booking?checkin=2018-01-01");
         // Arrange & Act
@@ -62,7 +63,7 @@ public class GetBookingTests : BaseApiTest
 
     //filter by checkout date
     [Test]
-    public async Task Booking_GetByCheckoutDate_ShouldReturnMatchingIds()
+    public async Task Booking_GetByCheckoutDate_ShouldReturnAllDatesGreaterThanOrEqual()
     {
         _test?.Value?.Info("Sending GET /booking?checkout=2019-01-01");
         // Arrange & Act
@@ -76,11 +77,25 @@ public class GetBookingTests : BaseApiTest
 
     //combined filters - need to improve
     [Test]
-    public async Task Booking_GetByMultipleFilters_ShouldReturnMatchingIds()
+    public async Task Booking_GetByMultipleFiltersFirstnameLastname_ShouldReturnMatchingIds()
     {
         _test?.Value?.Info("Sending GET /booking?firstname=Get&lastname=User");
         // Arrange & Act
         var response = await _client.GetAsync("booking?firstname=Get&lastname=User");
+
+        // Assert
+        response.IsSuccessful.Should().BeTrue();
+        var ids = ExtractIds(response.Content!);
+        ids.Should().HaveCountGreaterThan(0);
+    }
+
+    [Test]
+    public async Task Booking_GetByMultipleFiltersDates_ShouldReturnMatchingIds()
+    {
+        _test?.Value?.Info("Sending GET /booking?checking=2018-01-01&checkout=2019-01-01");
+
+        // Arrange & Act
+        var response = await _client.GetAsync("booking?checkin=2018-01-01&checkout=2019-01-01");
 
         // Assert
         response.IsSuccessful.Should().BeTrue();
@@ -109,14 +124,16 @@ public class GetBookingTests : BaseApiTest
     }
 
     [Test]
-    public async Task Get_WithoutAuth_ShouldReturn403()
+    public async Task Get_WithoutAuth_ShouldReturn401Or403()
     {
         // Arrange
         var id = createdBookingId;
         _test?.Value?.Info($"Sending GET /booking/{id}");
 
         var response = await _client.GetAsync($"booking/{id}", isWithCookieHeader: false);
-        response.StatusCode.Should().Be(System.Net.HttpStatusCode.OK, "Getting a booking without authentication should return 200 OK");
+        response.StatusCode.Should().
+            BeOneOf([HttpStatusCode.Forbidden, HttpStatusCode.Unauthorized],
+                "Getting a booking without authentication should return 401 Unauthorized or 403 Forbidden");
     }
 
     private async Task<int> CreateSampleBookingAsync()

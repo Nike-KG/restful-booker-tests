@@ -1,5 +1,6 @@
 ﻿using FluentAssertions;
 using RestfulBooker.Tests.Utils;
+using System.Net;
 using System.Text.Json;
 
 namespace RestfulBooker.Tests.Api.Booking;
@@ -30,7 +31,7 @@ public class DeleteBookingTests : BaseApiTest
             .GetInt32();
     }
 
-   [Test]
+    [Test]
     public async Task Delete_ExistingBooking_ShouldRemoveBooking()
     {
         // Arrange
@@ -40,29 +41,32 @@ public class DeleteBookingTests : BaseApiTest
         var deleteResponse = await _client.DeleteAsync($"booking/{id}");
 
         // Assert
-        deleteResponse.StatusCode.Should().Be(System.Net.HttpStatusCode.Created, "Deleting an existing booking should return 201 Created");
+        deleteResponse.StatusCode.Should().Be(HttpStatusCode.NoContent, "Deleting an existing booking should return 204 No content");
 
         // Verify the booking is deleted
         var getResponse = await _client.GetByIdAsync($"booking/{id}");
-        getResponse.StatusCode.Should().Be(System.Net.HttpStatusCode.NotFound, "Deleted booking should return 404 Not Found");
+        getResponse.StatusCode.Should().Be(HttpStatusCode.NotFound, "Deleted booking should return 404 Not Found");
     }
 
-   [Test]
+    [Test]
     public async Task Delete_NonExistentBookingId_ShouldReturn404()
     {
         // Arrange
         var response = await _client.DeleteAsync("booking/99999");
         // Assert
-        response.StatusCode.Should().Be(System.Net.HttpStatusCode.MethodNotAllowed, "Deleting a non-existent booking should return 405 Method Not Allowed");
+        response.StatusCode.Should()
+            .Be(HttpStatusCode.NotFound, "Deleting a non-existent booking should return 404 Not found");
     }
 
-   [Test]
-    public async Task Delete_WithoutAuth_ShouldReturn403()
+    [Test]
+    public async Task Delete_WithoutAuth_ShouldReturn401Or403()
     {
         // Arrange
         var id = await CreateSampleBookingAsync();
 
         var response = await _client.DeleteAsync($"booking/{id}", isWithCookieHeader: false);
-        response.StatusCode.Should().Be(System.Net.HttpStatusCode.Forbidden, "Deleting a booking without authentication should return 403 Forbidden");
+        response.StatusCode.Should()
+            .BeOneOf([HttpStatusCode.Forbidden, HttpStatusCode.Unauthorized],
+                "Deleting a booking without authentication should return 403 Forbidden or 401 Unauthorized");
     }
 }

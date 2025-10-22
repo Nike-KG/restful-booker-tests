@@ -1,5 +1,6 @@
 ﻿using FluentAssertions;
 using RestfulBooker.Tests.Utils;
+using System.Net;
 using System.Text.Json;
 
 namespace RestfulBooker.Tests.Api.Booking;
@@ -135,18 +136,21 @@ public class UpdateBookingTests : BaseApiTest
     }
 
    [Test]
-    public async Task Patch_NonExistentId_ShouldReturn405()
+    public async Task Patch_NonExistentId_ShouldReturn404()
     {
         var patchPayload = new { firstname = "Ghost" };
         var response = await _client.PatchAsync("booking/99999", patchPayload);
-        response.StatusCode.Should().Be(System.Net.HttpStatusCode.MethodNotAllowed, "Patching non-existent booking should return 405");
+        response.StatusCode.Should().
+            Be(HttpStatusCode.NotFound, "Patching non-existent booking should return 404 Not found");
     }
 
    [Test]
-    public async Task Patch_WithoutAuth_ShouldReturn403()
+    public async Task Patch_WithoutAuth_ShouldReturn401Or403()
     {
         var patchPayload = new { firstname = "NoAuth" };
         var response = await _client.PatchAsync("booking/1", patchPayload, false);
-        response.StatusCode.Should().Be(System.Net.HttpStatusCode.Forbidden, "Patching without auth should return 403");
+        response.StatusCode.Should().
+            BeOneOf([HttpStatusCode.Forbidden,HttpStatusCode.Unauthorized],
+                "Patching without auth should return 403 Forbidden or 401 Unauthorized");
     }
 }
