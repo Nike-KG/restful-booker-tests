@@ -99,7 +99,7 @@ public class UpdateBookingTests : BaseApiTest
         getResponse?.Data?.AdditionalNeeds.Should().Be("Late Checkout", "Additional needs should be updated");
     }
 
-    //[Test]
+    [Test]
     public async Task Patch_EmptyBody_ShouldReturnBadRequest()
     {
         // Arrange
