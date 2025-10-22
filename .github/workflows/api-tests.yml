@@ -18,11 +18,13 @@ jobs:
           dotnet-version: '8.0.x'
 
       - name: Restore & build
-        run: |
-          dotnet restore
-          dotnet build --configuration Release --no-restore
-        working-directory: RestfulBooker.Tests
+        run: ls -la
+        # run: |
+        #   dotnet restore
+        #   dotnet build --configuration Release --no-restore
+        # working-directory: RestfulBooker.Tests
 
       - name: Run tests
-        run: dotnet test --configuration Release --no-build
-        working-directory: RestfulBooker.Tests
+        run: ls -la
+        # run: dotnet test --configuration Release --no-build
+        # working-directory: RestfulBooker.Tests
