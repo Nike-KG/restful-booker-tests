@@ -35,7 +35,7 @@
   <ul class="nav-right">
    <li class="m-r-10"><a href="#"><span class="badge badge-primary">Booking API Tests</span></a></li>
    <li class="m-r-10">
-    <a href="#"><span class="badge badge-primary">10/22/2025 8:05:32 PM</span></a>
+    <a href="#"><span class="badge badge-primary">10/22/2025 10:14:36 PM</span></a>
    </li>
   </ul>
  </div>
@@ -71,7 +71,7 @@
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-exclamation-circle"></i></a>
           <ul id="status-toggle" class="dropdown-menu dropdown-md p-v-0">
- <a class="dropdown-item" status="pass" href="#"><span>Pass</span><span class="status success"></span></a>             <div class="dropdown-divider"></div>
+ <a class="dropdown-item" status="pass" href="#"><span>Pass</span><span class="status success"></span></a>  <a class="dropdown-item" status="fail" href="#"><span>Fail</span><span class="status danger"></span></a>             <div class="dropdown-divider"></div>
             <a status="clear" class="dropdown-item" href="#"><span>Clear</span><span class="pull-right"><i class="fa fa-close"></i></span></a>
           </ul>
         </li>
@@ -84,9 +84,9 @@
           tag=""
           device="">
           <div class="test-detail">
-            <p class="name">Booking_GetByMultipleFiltersDates_ShouldReturnMatchingIds</p>
+            <p class="name">FullBookingLifecycle_ShouldSucceed</p>
             <p class="text-sm">
-              <span>8:05:33 PM</span> / <span>131.05 ms</span>
+              <span>10:14:36 PM</span> / <span>1618.6 ms</span>
               <span class="badge pass-bg log float-right">Pass</span>
             </p>
           </div>
@@ -94,10 +94,10 @@
             <div class="detail-head">
               <div class="p-v-10">
                 <div class="info">
-                  <h5 class="test-status text-pass">Booking_GetByMultipleFiltersDates_ShouldReturnMatchingIds</h5>
-                  <span class='badge badge-success'>10/22/2025 8:05:33 PM</span>
-                  <span class='badge badge-danger'>10/22/2025 8:05:33 PM</span>
-                  <span class='badge badge-default'>131.05 ms</span>
+                  <h5 class="test-status text-pass">FullBookingLifecycle_ShouldSucceed</h5>
+                  <span class='badge badge-success'>10/22/2025 10:14:36 PM</span>
+                  <span class='badge badge-danger'>10/22/2025 10:14:37 PM</span>
+                  <span class='badge badge-default'>1618.6 ms</span>
                   &middot; <span class='uri-anchor badge badge-default'>#test-id=1</span>
                   <span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
                   <span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
@@ -114,16 +114,1466 @@
   <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
   <tbody>
       <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>Oct 22, 2025 20:05:33</td>
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>Oct 22, 2025 22:14:37</td>
         <td>
-Sending GET /booking?checking=2018-01-01&checkout=2025-12-01        </td>
+Test passed        </td>
+      </tr>
+  </tbody>
+</table></div>
+          </div>
+        </li>
+        <li class="test-item" status="fail" test-id="2"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">Patch_InvalidChckinData_ShouldReturnBadRequest</p>
+            <p class="text-sm">
+              <span>10:14:38 PM</span> / <span>564.1 ms</span>
+              <span class="badge fail-bg log float-right">Fail</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+            <div class="detail-head">
+              <div class="p-v-10">
+                <div class="info">
+                  <h5 class="test-status text-fail">Patch_InvalidChckinData_ShouldReturnBadRequest</h5>
+                  <span class='badge badge-success'>10/22/2025 10:14:38 PM</span>
+                  <span class='badge badge-danger'>10/22/2025 10:14:38 PM</span>
+                  <span class='badge badge-default'>564.1 ms</span>
+                  &middot; <span class='uri-anchor badge badge-default'>#test-id=2</span>
+                  <span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
+                  <span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
+                  <span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
+                </div>
+              </div>
+            </div>
+
+
+<div class="detail-body mt-4">
+
+
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log fail-bg">Fail</span></td>
+        <td>Oct 22, 2025 22:14:38</td>
+        <td>
+Test failed: Expected patchResponse.IsSuccessful to be False because 400 Bad Request should returned, but found True.        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log fail-bg">Fail</span></td>
+        <td>Oct 22, 2025 22:14:38</td>
+        <td>
+   at FluentAssertions.Execution.LateBoundTestFramework.Throw(String message)
+   at FluentAssertions.Execution.DefaultAssertionStrategy.HandleFailure(String message)
+   at FluentAssertions.Execution.AssertionScope.AddPreFormattedFailure(String formattedFailureMessage)
+   at FluentAssertions.Execution.AssertionChain.FailWith(Func`1 getFailureReason)
+   at FluentAssertions.Execution.AssertionChain.FailWith(Func`1 getFailureReason)
+   at FluentAssertions.Execution.AssertionChain.FailWith(String message, Object[] args)
+   at FluentAssertions.Primitives.BooleanAssertions`1.BeFalse(String because, Object[] becauseArgs)
+   at RestfulBooker.Tests.Api.Booking.UpdateBookingTests.Patch_InvalidChckinData_ShouldReturnBadRequest() in D:\Eneco Assignment\src\tests\RestfulBooker.Tests\Api\Booking\UpdateBookingTests.cs:line 182
+   at NUnit.Framework.Internal.TaskAwaitAdapter.GenericAdapter`1.BlockUntilCompleted()
+   at NUnit.Framework.Internal.MessagePumpStrategy.NoMessagePumpStrategy.WaitForCompletion(AwaitAdapter awaiter)
+   at NUnit.Framework.Internal.AsyncToSyncAdapter.Await[TResult](TestExecutionContext context, Func`1 invoke)
+   at NUnit.Framework.Internal.AsyncToSyncAdapter.Await(TestExecutionContext context, Func`1 invoke)
+   at NUnit.Framework.Internal.Commands.TestMethodCommand.RunTestMethod(TestExecutionContext context)
+   at NUnit.Framework.Internal.Commands.TestMethodCommand.Execute(TestExecutionContext context)
+   at NUnit.Framework.Internal.Commands.BeforeAndAfterTestCommand.<>c__DisplayClass1_0.<Execute>b__0()
+   at NUnit.Framework.Internal.Commands.DelegatingTestCommand.RunTestMethodInThreadAbortSafeZone(TestExecutionContext context, Action action)
+        </td>
+      </tr>
+  </tbody>
+</table></div>
+          </div>
+        </li>
+        <li class="test-item" status="pass" test-id="4"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">Delete_ExistingBooking_ShouldRemoveBooking</p>
+            <p class="text-sm">
+              <span>10:14:38 PM</span> / <span>641.22 ms</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+            <div class="detail-head">
+              <div class="p-v-10">
+                <div class="info">
+                  <h5 class="test-status text-pass">Delete_ExistingBooking_ShouldRemoveBooking</h5>
+                  <span class='badge badge-success'>10/22/2025 10:14:38 PM</span>
+                  <span class='badge badge-danger'>10/22/2025 10:14:38 PM</span>
+                  <span class='badge badge-default'>641.22 ms</span>
+                  &middot; <span class='uri-anchor badge badge-default'>#test-id=4</span>
+                  <span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
+                  <span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
+                  <span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
+                </div>
+              </div>
+            </div>
+
+
+<div class="detail-body mt-4">
+
+
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>Oct 22, 2025 22:14:38</td>
+        <td>
+Test passed        </td>
+      </tr>
+  </tbody>
+</table></div>
+          </div>
+        </li>
+        <li class="test-item" status="pass" test-id="3"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">GetAllBookings_ShouldRespondUnder2Seconds</p>
+            <p class="text-sm">
+              <span>10:14:38 PM</span> / <span>532.34 ms</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+            <div class="detail-head">
+              <div class="p-v-10">
+                <div class="info">
+                  <h5 class="test-status text-pass">GetAllBookings_ShouldRespondUnder2Seconds</h5>
+                  <span class='badge badge-success'>10/22/2025 10:14:38 PM</span>
+                  <span class='badge badge-danger'>10/22/2025 10:14:38 PM</span>
+                  <span class='badge badge-default'>532.34 ms</span>
+                  &middot; <span class='uri-anchor badge badge-default'>#test-id=3</span>
+                  <span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
+                  <span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
+                  <span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
+                </div>
+              </div>
+            </div>
+
+
+<div class="detail-body mt-4">
+
+
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>Oct 22, 2025 22:14:38</td>
+        <td>
+Test passed        </td>
+      </tr>
+  </tbody>
+</table></div>
+          </div>
+        </li>
+        <li class="test-item" status="fail" test-id="6"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">Patch_InvalidFirstnameDataType_ShouldReturnBadRequest</p>
+            <p class="text-sm">
+              <span>10:14:38 PM</span> / <span>551.01 ms</span>
+              <span class="badge fail-bg log float-right">Fail</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+            <div class="detail-head">
+              <div class="p-v-10">
+                <div class="info">
+                  <h5 class="test-status text-fail">Patch_InvalidFirstnameDataType_ShouldReturnBadRequest</h5>
+                  <span class='badge badge-success'>10/22/2025 10:14:38 PM</span>
+                  <span class='badge badge-danger'>10/22/2025 10:14:38 PM</span>
+                  <span class='badge badge-default'>551.01 ms</span>
+                  &middot; <span class='uri-anchor badge badge-default'>#test-id=6</span>
+                  <span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
+                  <span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
+                  <span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
+                </div>
+              </div>
+            </div>
+
+
+<div class="detail-body mt-4">
+
+
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log fail-bg">Fail</span></td>
+        <td>Oct 22, 2025 22:14:38</td>
+        <td>
+Test failed: Expected patchResponse.StatusCode to be HttpStatusCode.BadRequest {value: 400}, but found HttpStatusCode.OK {value: 200}.        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log fail-bg">Fail</span></td>
+        <td>Oct 22, 2025 22:14:38</td>
+        <td>
+   at FluentAssertions.Execution.LateBoundTestFramework.Throw(String message)
+   at FluentAssertions.Execution.DefaultAssertionStrategy.HandleFailure(String message)
+   at FluentAssertions.Execution.AssertionScope.AddPreFormattedFailure(String formattedFailureMessage)
+   at FluentAssertions.Execution.AssertionChain.FailWith(Func`1 getFailureReason)
+   at FluentAssertions.Execution.AssertionChain.FailWith(Func`1 getFailureReason)
+   at FluentAssertions.Execution.AssertionChain.FailWith(String message, Object[] args)
+   at FluentAssertions.Primitives.EnumAssertions`2.Be(TEnum expected, String because, Object[] becauseArgs)
+   at RestfulBooker.Tests.Api.Booking.UpdateBookingTests.Patch_InvalidFirstnameDataType_ShouldReturnBadRequest() in D:\Eneco Assignment\src\tests\RestfulBooker.Tests\Api\Booking\UpdateBookingTests.cs:line 127
+   at NUnit.Framework.Internal.TaskAwaitAdapter.GenericAdapter`1.BlockUntilCompleted()
+   at NUnit.Framework.Internal.MessagePumpStrategy.NoMessagePumpStrategy.WaitForCompletion(AwaitAdapter awaiter)
+   at NUnit.Framework.Internal.AsyncToSyncAdapter.Await[TResult](TestExecutionContext context, Func`1 invoke)
+   at NUnit.Framework.Internal.AsyncToSyncAdapter.Await(TestExecutionContext context, Func`1 invoke)
+   at NUnit.Framework.Internal.Commands.TestMethodCommand.RunTestMethod(TestExecutionContext context)
+   at NUnit.Framework.Internal.Commands.TestMethodCommand.Execute(TestExecutionContext context)
+   at NUnit.Framework.Internal.Commands.BeforeAndAfterTestCommand.<>c__DisplayClass1_0.<Execute>b__0()
+   at NUnit.Framework.Internal.Commands.DelegatingTestCommand.RunTestMethodInThreadAbortSafeZone(TestExecutionContext context, Action action)
+        </td>
+      </tr>
+  </tbody>
+</table></div>
+          </div>
+        </li>
+        <li class="test-item" status="fail" test-id="8"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">Patch_InvalidDepositPaidDataType_ShouldReturnBadRequest</p>
+            <p class="text-sm">
+              <span>10:14:38 PM</span> / <span>563.92 ms</span>
+              <span class="badge fail-bg log float-right">Fail</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+            <div class="detail-head">
+              <div class="p-v-10">
+                <div class="info">
+                  <h5 class="test-status text-fail">Patch_InvalidDepositPaidDataType_ShouldReturnBadRequest</h5>
+                  <span class='badge badge-success'>10/22/2025 10:14:38 PM</span>
+                  <span class='badge badge-danger'>10/22/2025 10:14:38 PM</span>
+                  <span class='badge badge-default'>563.92 ms</span>
+                  &middot; <span class='uri-anchor badge badge-default'>#test-id=8</span>
+                  <span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
+                  <span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
+                  <span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
+                </div>
+              </div>
+            </div>
+
+
+<div class="detail-body mt-4">
+
+
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log fail-bg">Fail</span></td>
+        <td>Oct 22, 2025 22:14:38</td>
+        <td>
+Test failed: Expected patchResponse.IsSuccessful to be False because 400 Bad Request should returned, but found True.        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log fail-bg">Fail</span></td>
+        <td>Oct 22, 2025 22:14:38</td>
+        <td>
+   at FluentAssertions.Execution.LateBoundTestFramework.Throw(String message)
+   at FluentAssertions.Execution.DefaultAssertionStrategy.HandleFailure(String message)
+   at FluentAssertions.Execution.AssertionScope.AddPreFormattedFailure(String formattedFailureMessage)
+   at FluentAssertions.Execution.AssertionChain.FailWith(Func`1 getFailureReason)
+   at FluentAssertions.Execution.AssertionChain.FailWith(Func`1 getFailureReason)
+   at FluentAssertions.Execution.AssertionChain.FailWith(String message, Object[] args)
+   at FluentAssertions.Primitives.BooleanAssertions`1.BeFalse(String because, Object[] becauseArgs)
+   at RestfulBooker.Tests.Api.Booking.UpdateBookingTests.Patch_InvalidDepositPaidDataType_ShouldReturnBadRequest() in D:\Eneco Assignment\src\tests\RestfulBooker.Tests\Api\Booking\UpdateBookingTests.cs:line 168
+   at NUnit.Framework.Internal.TaskAwaitAdapter.GenericAdapter`1.BlockUntilCompleted()
+   at NUnit.Framework.Internal.MessagePumpStrategy.NoMessagePumpStrategy.WaitForCompletion(AwaitAdapter awaiter)
+   at NUnit.Framework.Internal.AsyncToSyncAdapter.Await[TResult](TestExecutionContext context, Func`1 invoke)
+   at NUnit.Framework.Internal.AsyncToSyncAdapter.Await(TestExecutionContext context, Func`1 invoke)
+   at NUnit.Framework.Internal.Commands.TestMethodCommand.RunTestMethod(TestExecutionContext context)
+   at NUnit.Framework.Internal.Commands.TestMethodCommand.Execute(TestExecutionContext context)
+   at NUnit.Framework.Internal.Commands.BeforeAndAfterTestCommand.<>c__DisplayClass1_0.<Execute>b__0()
+   at NUnit.Framework.Internal.Commands.DelegatingTestCommand.RunTestMethodInThreadAbortSafeZone(TestExecutionContext context, Action action)
+        </td>
+      </tr>
+  </tbody>
+</table></div>
+          </div>
+        </li>
+        <li class="test-item" status="pass" test-id="7"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">Patch_MultipleFields_ShouldUpdateAllSpecified</p>
+            <p class="text-sm">
+              <span>10:14:38 PM</span> / <span>658.48 ms</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+            <div class="detail-head">
+              <div class="p-v-10">
+                <div class="info">
+                  <h5 class="test-status text-pass">Patch_MultipleFields_ShouldUpdateAllSpecified</h5>
+                  <span class='badge badge-success'>10/22/2025 10:14:38 PM</span>
+                  <span class='badge badge-danger'>10/22/2025 10:14:38 PM</span>
+                  <span class='badge badge-default'>658.48 ms</span>
+                  &middot; <span class='uri-anchor badge badge-default'>#test-id=7</span>
+                  <span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
+                  <span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
+                  <span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
+                </div>
+              </div>
+            </div>
+
+
+<div class="detail-body mt-4">
+
+
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>Oct 22, 2025 22:14:38</td>
+        <td>
+Test passed        </td>
+      </tr>
+  </tbody>
+</table></div>
+          </div>
+        </li>
+        <li class="test-item" status="pass" test-id="5"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">Patch_SingleFlield_ShouldUpdateFirstName</p>
+            <p class="text-sm">
+              <span>10:14:38 PM</span> / <span>691.25 ms</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+            <div class="detail-head">
+              <div class="p-v-10">
+                <div class="info">
+                  <h5 class="test-status text-pass">Patch_SingleFlield_ShouldUpdateFirstName</h5>
+                  <span class='badge badge-success'>10/22/2025 10:14:38 PM</span>
+                  <span class='badge badge-danger'>10/22/2025 10:14:38 PM</span>
+                  <span class='badge badge-default'>691.25 ms</span>
+                  &middot; <span class='uri-anchor badge badge-default'>#test-id=5</span>
+                  <span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
+                  <span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
+                  <span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
+                </div>
+              </div>
+            </div>
+
+
+<div class="detail-body mt-4">
+
+
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>Oct 22, 2025 22:14:38</td>
+        <td>
+Test passed        </td>
+      </tr>
+  </tbody>
+</table></div>
+          </div>
+        </li>
+        <li class="test-item" status="pass" test-id="9"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">Patch_SingleField_ShouldUpdateDepositPaid</p>
+            <p class="text-sm">
+              <span>10:14:38 PM</span> / <span>691.25 ms</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+            <div class="detail-head">
+              <div class="p-v-10">
+                <div class="info">
+                  <h5 class="test-status text-pass">Patch_SingleField_ShouldUpdateDepositPaid</h5>
+                  <span class='badge badge-success'>10/22/2025 10:14:38 PM</span>
+                  <span class='badge badge-danger'>10/22/2025 10:14:38 PM</span>
+                  <span class='badge badge-default'>691.25 ms</span>
+                  &middot; <span class='uri-anchor badge badge-default'>#test-id=9</span>
+                  <span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
+                  <span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
+                  <span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
+                </div>
+              </div>
+            </div>
+
+
+<div class="detail-body mt-4">
+
+
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>Oct 22, 2025 22:14:38</td>
+        <td>
+Test passed        </td>
+      </tr>
+  </tbody>
+</table></div>
+          </div>
+        </li>
+        <li class="test-item" status="fail" test-id="10"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">Patch_NonExistentId_ShouldReturn404</p>
+            <p class="text-sm">
+              <span>10:14:38 PM</span> / <span>396.54 ms</span>
+              <span class="badge fail-bg log float-right">Fail</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+            <div class="detail-head">
+              <div class="p-v-10">
+                <div class="info">
+                  <h5 class="test-status text-fail">Patch_NonExistentId_ShouldReturn404</h5>
+                  <span class='badge badge-success'>10/22/2025 10:14:38 PM</span>
+                  <span class='badge badge-danger'>10/22/2025 10:14:38 PM</span>
+                  <span class='badge badge-default'>396.54 ms</span>
+                  &middot; <span class='uri-anchor badge badge-default'>#test-id=10</span>
+                  <span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
+                  <span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
+                  <span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
+                </div>
+              </div>
+            </div>
+
+
+<div class="detail-body mt-4">
+
+
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log fail-bg">Fail</span></td>
+        <td>Oct 22, 2025 22:14:38</td>
+        <td>
+Test failed: Expected response.StatusCode to be HttpStatusCode.NotFound {value: 404} because Patching non-existent booking should return 404 Not found, but found HttpStatusCode.MethodNotAllowed {value: 405}.        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log fail-bg">Fail</span></td>
+        <td>Oct 22, 2025 22:14:38</td>
+        <td>
+   at FluentAssertions.Execution.LateBoundTestFramework.Throw(String message)
+   at FluentAssertions.Execution.DefaultAssertionStrategy.HandleFailure(String message)
+   at FluentAssertions.Execution.AssertionScope.AddPreFormattedFailure(String formattedFailureMessage)
+   at FluentAssertions.Execution.AssertionChain.FailWith(Func`1 getFailureReason)
+   at FluentAssertions.Execution.AssertionChain.FailWith(Func`1 getFailureReason)
+   at FluentAssertions.Execution.AssertionChain.FailWith(String message, Object[] args)
+   at FluentAssertions.Primitives.EnumAssertions`2.Be(TEnum expected, String because, Object[] becauseArgs)
+   at RestfulBooker.Tests.Api.Booking.UpdateBookingTests.Patch_NonExistentId_ShouldReturn404() in D:\Eneco Assignment\src\tests\RestfulBooker.Tests\Api\Booking\UpdateBookingTests.cs:line 192
+   at NUnit.Framework.Internal.TaskAwaitAdapter.GenericAdapter`1.BlockUntilCompleted()
+   at NUnit.Framework.Internal.MessagePumpStrategy.NoMessagePumpStrategy.WaitForCompletion(AwaitAdapter awaiter)
+   at NUnit.Framework.Internal.AsyncToSyncAdapter.Await[TResult](TestExecutionContext context, Func`1 invoke)
+   at NUnit.Framework.Internal.AsyncToSyncAdapter.Await(TestExecutionContext context, Func`1 invoke)
+   at NUnit.Framework.Internal.Commands.TestMethodCommand.RunTestMethod(TestExecutionContext context)
+   at NUnit.Framework.Internal.Commands.TestMethodCommand.Execute(TestExecutionContext context)
+   at NUnit.Framework.Internal.Commands.BeforeAndAfterTestCommand.<>c__DisplayClass1_0.<Execute>b__0()
+   at NUnit.Framework.Internal.Commands.DelegatingTestCommand.RunTestMethodInThreadAbortSafeZone(TestExecutionContext context, Action action)
+        </td>
+      </tr>
+  </tbody>
+</table></div>
+          </div>
+        </li>
+        <li class="test-item" status="fail" test-id="11"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">Patch_InvalidLastnameDataType_ShouldReturnBadRequest</p>
+            <p class="text-sm">
+              <span>10:14:38 PM</span> / <span>551.05 ms</span>
+              <span class="badge fail-bg log float-right">Fail</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+            <div class="detail-head">
+              <div class="p-v-10">
+                <div class="info">
+                  <h5 class="test-status text-fail">Patch_InvalidLastnameDataType_ShouldReturnBadRequest</h5>
+                  <span class='badge badge-success'>10/22/2025 10:14:38 PM</span>
+                  <span class='badge badge-danger'>10/22/2025 10:14:38 PM</span>
+                  <span class='badge badge-default'>551.05 ms</span>
+                  &middot; <span class='uri-anchor badge badge-default'>#test-id=11</span>
+                  <span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
+                  <span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
+                  <span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
+                </div>
+              </div>
+            </div>
+
+
+<div class="detail-body mt-4">
+
+
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log fail-bg">Fail</span></td>
+        <td>Oct 22, 2025 22:14:38</td>
+        <td>
+Test failed: Expected patchResponse.StatusCode to be HttpStatusCode.BadRequest {value: 400}, but found HttpStatusCode.OK {value: 200}.        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log fail-bg">Fail</span></td>
+        <td>Oct 22, 2025 22:14:38</td>
+        <td>
+   at FluentAssertions.Execution.LateBoundTestFramework.Throw(String message)
+   at FluentAssertions.Execution.DefaultAssertionStrategy.HandleFailure(String message)
+   at FluentAssertions.Execution.AssertionScope.AddPreFormattedFailure(String formattedFailureMessage)
+   at FluentAssertions.Execution.AssertionChain.FailWith(Func`1 getFailureReason)
+   at FluentAssertions.Execution.AssertionChain.FailWith(Func`1 getFailureReason)
+   at FluentAssertions.Execution.AssertionChain.FailWith(String message, Object[] args)
+   at FluentAssertions.Primitives.EnumAssertions`2.Be(TEnum expected, String because, Object[] becauseArgs)
+   at RestfulBooker.Tests.Api.Booking.UpdateBookingTests.Patch_InvalidLastnameDataType_ShouldReturnBadRequest() in D:\Eneco Assignment\src\tests\RestfulBooker.Tests\Api\Booking\UpdateBookingTests.cs:line 141
+   at NUnit.Framework.Internal.TaskAwaitAdapter.GenericAdapter`1.BlockUntilCompleted()
+   at NUnit.Framework.Internal.MessagePumpStrategy.NoMessagePumpStrategy.WaitForCompletion(AwaitAdapter awaiter)
+   at NUnit.Framework.Internal.AsyncToSyncAdapter.Await[TResult](TestExecutionContext context, Func`1 invoke)
+   at NUnit.Framework.Internal.AsyncToSyncAdapter.Await(TestExecutionContext context, Func`1 invoke)
+   at NUnit.Framework.Internal.Commands.TestMethodCommand.RunTestMethod(TestExecutionContext context)
+   at NUnit.Framework.Internal.Commands.TestMethodCommand.Execute(TestExecutionContext context)
+   at NUnit.Framework.Internal.Commands.BeforeAndAfterTestCommand.<>c__DisplayClass1_0.<Execute>b__0()
+   at NUnit.Framework.Internal.Commands.DelegatingTestCommand.RunTestMethodInThreadAbortSafeZone(TestExecutionContext context, Action action)
+        </td>
+      </tr>
+  </tbody>
+</table></div>
+          </div>
+        </li>
+        <li class="test-item" status="fail" test-id="12"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">Patch_InvalidTotalPriceDataType_ShouldReturnBadRequest</p>
+            <p class="text-sm">
+              <span>10:14:38 PM</span> / <span>550.98 ms</span>
+              <span class="badge fail-bg log float-right">Fail</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+            <div class="detail-head">
+              <div class="p-v-10">
+                <div class="info">
+                  <h5 class="test-status text-fail">Patch_InvalidTotalPriceDataType_ShouldReturnBadRequest</h5>
+                  <span class='badge badge-success'>10/22/2025 10:14:38 PM</span>
+                  <span class='badge badge-danger'>10/22/2025 10:14:38 PM</span>
+                  <span class='badge badge-default'>550.98 ms</span>
+                  &middot; <span class='uri-anchor badge badge-default'>#test-id=12</span>
+                  <span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
+                  <span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
+                  <span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
+                </div>
+              </div>
+            </div>
+
+
+<div class="detail-body mt-4">
+
+
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log fail-bg">Fail</span></td>
+        <td>Oct 22, 2025 22:14:38</td>
+        <td>
+Test failed: Expected patchResponse.StatusCode to be HttpStatusCode.BadRequest {value: 400}, but found HttpStatusCode.OK {value: 200}.        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log fail-bg">Fail</span></td>
+        <td>Oct 22, 2025 22:14:38</td>
+        <td>
+   at FluentAssertions.Execution.LateBoundTestFramework.Throw(String message)
+   at FluentAssertions.Execution.DefaultAssertionStrategy.HandleFailure(String message)
+   at FluentAssertions.Execution.AssertionScope.AddPreFormattedFailure(String formattedFailureMessage)
+   at FluentAssertions.Execution.AssertionChain.FailWith(Func`1 getFailureReason)
+   at FluentAssertions.Execution.AssertionChain.FailWith(Func`1 getFailureReason)
+   at FluentAssertions.Execution.AssertionChain.FailWith(String message, Object[] args)
+   at FluentAssertions.Primitives.EnumAssertions`2.Be(TEnum expected, String because, Object[] becauseArgs)
+   at RestfulBooker.Tests.Api.Booking.UpdateBookingTests.Patch_InvalidTotalPriceDataType_ShouldReturnBadRequest() in D:\Eneco Assignment\src\tests\RestfulBooker.Tests\Api\Booking\UpdateBookingTests.cs:line 155
+   at NUnit.Framework.Internal.TaskAwaitAdapter.GenericAdapter`1.BlockUntilCompleted()
+   at NUnit.Framework.Internal.MessagePumpStrategy.NoMessagePumpStrategy.WaitForCompletion(AwaitAdapter awaiter)
+   at NUnit.Framework.Internal.AsyncToSyncAdapter.Await[TResult](TestExecutionContext context, Func`1 invoke)
+   at NUnit.Framework.Internal.AsyncToSyncAdapter.Await(TestExecutionContext context, Func`1 invoke)
+   at NUnit.Framework.Internal.Commands.TestMethodCommand.RunTestMethod(TestExecutionContext context)
+   at NUnit.Framework.Internal.Commands.TestMethodCommand.Execute(TestExecutionContext context)
+   at NUnit.Framework.Internal.Commands.BeforeAndAfterTestCommand.<>c__DisplayClass1_0.<Execute>b__0()
+   at NUnit.Framework.Internal.Commands.DelegatingTestCommand.RunTestMethodInThreadAbortSafeZone(TestExecutionContext context, Action action)
+        </td>
+      </tr>
+  </tbody>
+</table></div>
+          </div>
+        </li>
+        <li class="test-item" status="fail" test-id="14"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">Delete_WithoutAuth_ShouldReturn401</p>
+            <p class="text-sm">
+              <span>10:14:38 PM</span> / <span>531.57 ms</span>
+              <span class="badge fail-bg log float-right">Fail</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+            <div class="detail-head">
+              <div class="p-v-10">
+                <div class="info">
+                  <h5 class="test-status text-fail">Delete_WithoutAuth_ShouldReturn401</h5>
+                  <span class='badge badge-success'>10/22/2025 10:14:38 PM</span>
+                  <span class='badge badge-danger'>10/22/2025 10:14:38 PM</span>
+                  <span class='badge badge-default'>531.57 ms</span>
+                  &middot; <span class='uri-anchor badge badge-default'>#test-id=14</span>
+                  <span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
+                  <span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
+                  <span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
+                </div>
+              </div>
+            </div>
+
+
+<div class="detail-body mt-4">
+
+
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log fail-bg">Fail</span></td>
+        <td>Oct 22, 2025 22:14:38</td>
+        <td>
+Test failed: Expected response.StatusCode to be HttpStatusCode.Unauthorized {value: 401} because Deleting a booking without authentication should return 401 Unauthorized, but found HttpStatusCode.Forbidden {value: 403}.        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log fail-bg">Fail</span></td>
+        <td>Oct 22, 2025 22:14:38</td>
+        <td>
+   at FluentAssertions.Execution.LateBoundTestFramework.Throw(String message)
+   at FluentAssertions.Execution.DefaultAssertionStrategy.HandleFailure(String message)
+   at FluentAssertions.Execution.AssertionScope.AddPreFormattedFailure(String formattedFailureMessage)
+   at FluentAssertions.Execution.AssertionChain.FailWith(Func`1 getFailureReason)
+   at FluentAssertions.Execution.AssertionChain.FailWith(Func`1 getFailureReason)
+   at FluentAssertions.Execution.AssertionChain.FailWith(String message, Object[] args)
+   at FluentAssertions.Primitives.EnumAssertions`2.Be(TEnum expected, String because, Object[] becauseArgs)
+   at RestfulBooker.Tests.Api.Booking.DeleteBookingTests.Delete_WithoutAuth_ShouldReturn401() in D:\Eneco Assignment\src\tests\RestfulBooker.Tests\Api\Booking\DeleteBookingTests.cs:line 48
+   at NUnit.Framework.Internal.TaskAwaitAdapter.GenericAdapter`1.BlockUntilCompleted()
+   at NUnit.Framework.Internal.MessagePumpStrategy.NoMessagePumpStrategy.WaitForCompletion(AwaitAdapter awaiter)
+   at NUnit.Framework.Internal.AsyncToSyncAdapter.Await[TResult](TestExecutionContext context, Func`1 invoke)
+   at NUnit.Framework.Internal.AsyncToSyncAdapter.Await(TestExecutionContext context, Func`1 invoke)
+   at NUnit.Framework.Internal.Commands.TestMethodCommand.RunTestMethod(TestExecutionContext context)
+   at NUnit.Framework.Internal.Commands.TestMethodCommand.Execute(TestExecutionContext context)
+   at NUnit.Framework.Internal.Commands.BeforeAndAfterTestCommand.<>c__DisplayClass1_0.<Execute>b__0()
+   at NUnit.Framework.Internal.Commands.DelegatingTestCommand.RunTestMethodInThreadAbortSafeZone(TestExecutionContext context, Action action)
+        </td>
+      </tr>
+  </tbody>
+</table></div>
+          </div>
+        </li>
+        <li class="test-item" status="pass" test-id="15"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">Patch_SingleField_ShouldUpdateLastName</p>
+            <p class="text-sm">
+              <span>10:14:38 PM</span> / <span>691.22 ms</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+            <div class="detail-head">
+              <div class="p-v-10">
+                <div class="info">
+                  <h5 class="test-status text-pass">Patch_SingleField_ShouldUpdateLastName</h5>
+                  <span class='badge badge-success'>10/22/2025 10:14:38 PM</span>
+                  <span class='badge badge-danger'>10/22/2025 10:14:38 PM</span>
+                  <span class='badge badge-default'>691.22 ms</span>
+                  &middot; <span class='uri-anchor badge badge-default'>#test-id=15</span>
+                  <span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
+                  <span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
+                  <span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
+                </div>
+              </div>
+            </div>
+
+
+<div class="detail-body mt-4">
+
+
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>Oct 22, 2025 22:14:38</td>
+        <td>
+Test passed        </td>
+      </tr>
+  </tbody>
+</table></div>
+          </div>
+        </li>
+        <li class="test-item" status="fail" test-id="13"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">Delete_NonExistentBookingId_ShouldReturn404</p>
+            <p class="text-sm">
+              <span>10:14:38 PM</span> / <span>396.52 ms</span>
+              <span class="badge fail-bg log float-right">Fail</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+            <div class="detail-head">
+              <div class="p-v-10">
+                <div class="info">
+                  <h5 class="test-status text-fail">Delete_NonExistentBookingId_ShouldReturn404</h5>
+                  <span class='badge badge-success'>10/22/2025 10:14:38 PM</span>
+                  <span class='badge badge-danger'>10/22/2025 10:14:38 PM</span>
+                  <span class='badge badge-default'>396.52 ms</span>
+                  &middot; <span class='uri-anchor badge badge-default'>#test-id=13</span>
+                  <span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
+                  <span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
+                  <span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
+                </div>
+              </div>
+            </div>
+
+
+<div class="detail-body mt-4">
+
+
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log fail-bg">Fail</span></td>
+        <td>Oct 22, 2025 22:14:38</td>
+        <td>
+Test failed: Expected response.StatusCode to be HttpStatusCode.NotFound {value: 404} because Deleting a non-existent booking should return 404 Not found, but found HttpStatusCode.MethodNotAllowed {value: 405}.        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log fail-bg">Fail</span></td>
+        <td>Oct 22, 2025 22:14:38</td>
+        <td>
+   at FluentAssertions.Execution.LateBoundTestFramework.Throw(String message)
+   at FluentAssertions.Execution.DefaultAssertionStrategy.HandleFailure(String message)
+   at FluentAssertions.Execution.AssertionScope.AddPreFormattedFailure(String formattedFailureMessage)
+   at FluentAssertions.Execution.AssertionChain.FailWith(Func`1 getFailureReason)
+   at FluentAssertions.Execution.AssertionChain.FailWith(Func`1 getFailureReason)
+   at FluentAssertions.Execution.AssertionChain.FailWith(String message, Object[] args)
+   at FluentAssertions.Primitives.EnumAssertions`2.Be(TEnum expected, String because, Object[] becauseArgs)
+   at RestfulBooker.Tests.Api.Booking.DeleteBookingTests.Delete_NonExistentBookingId_ShouldReturn404() in D:\Eneco Assignment\src\tests\RestfulBooker.Tests\Api\Booking\DeleteBookingTests.cs:line 37
+   at NUnit.Framework.Internal.TaskAwaitAdapter.GenericAdapter`1.BlockUntilCompleted()
+   at NUnit.Framework.Internal.MessagePumpStrategy.NoMessagePumpStrategy.WaitForCompletion(AwaitAdapter awaiter)
+   at NUnit.Framework.Internal.AsyncToSyncAdapter.Await[TResult](TestExecutionContext context, Func`1 invoke)
+   at NUnit.Framework.Internal.AsyncToSyncAdapter.Await(TestExecutionContext context, Func`1 invoke)
+   at NUnit.Framework.Internal.Commands.TestMethodCommand.RunTestMethod(TestExecutionContext context)
+   at NUnit.Framework.Internal.Commands.TestMethodCommand.Execute(TestExecutionContext context)
+   at NUnit.Framework.Internal.Commands.BeforeAndAfterTestCommand.<>c__DisplayClass1_0.<Execute>b__0()
+   at NUnit.Framework.Internal.Commands.DelegatingTestCommand.RunTestMethodInThreadAbortSafeZone(TestExecutionContext context, Action action)
+        </td>
+      </tr>
+  </tbody>
+</table></div>
+          </div>
+        </li>
+        <li class="test-item" status="pass" test-id="16"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">Patch_SingleField_ShouldUpdateTotalPrice</p>
+            <p class="text-sm">
+              <span>10:14:38 PM</span> / <span>691 ms</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+            <div class="detail-head">
+              <div class="p-v-10">
+                <div class="info">
+                  <h5 class="test-status text-pass">Patch_SingleField_ShouldUpdateTotalPrice</h5>
+                  <span class='badge badge-success'>10/22/2025 10:14:38 PM</span>
+                  <span class='badge badge-danger'>10/22/2025 10:14:38 PM</span>
+                  <span class='badge badge-default'>691 ms</span>
+                  &middot; <span class='uri-anchor badge badge-default'>#test-id=16</span>
+                  <span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
+                  <span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
+                  <span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
+                </div>
+              </div>
+            </div>
+
+
+<div class="detail-body mt-4">
+
+
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>Oct 22, 2025 22:14:38</td>
+        <td>
+Test passed        </td>
+      </tr>
+  </tbody>
+</table></div>
+          </div>
+        </li>
+        <li class="test-item" status="fail" test-id="17"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">Patch_WithoutAuth_ShouldReturn401</p>
+            <p class="text-sm">
+              <span>10:14:38 PM</span> / <span>134.91 ms</span>
+              <span class="badge fail-bg log float-right">Fail</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+            <div class="detail-head">
+              <div class="p-v-10">
+                <div class="info">
+                  <h5 class="test-status text-fail">Patch_WithoutAuth_ShouldReturn401</h5>
+                  <span class='badge badge-success'>10/22/2025 10:14:38 PM</span>
+                  <span class='badge badge-danger'>10/22/2025 10:14:38 PM</span>
+                  <span class='badge badge-default'>134.91 ms</span>
+                  &middot; <span class='uri-anchor badge badge-default'>#test-id=17</span>
+                  <span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
+                  <span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
+                  <span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
+                </div>
+              </div>
+            </div>
+
+
+<div class="detail-body mt-4">
+
+
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log fail-bg">Fail</span></td>
+        <td>Oct 22, 2025 22:14:38</td>
+        <td>
+Test failed: Expected response.StatusCode to be HttpStatusCode.Unauthorized {value: 401} because Patching without auth should return 401 Unauthorized, but found HttpStatusCode.Forbidden {value: 403}.        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log fail-bg">Fail</span></td>
+        <td>Oct 22, 2025 22:14:38</td>
+        <td>
+   at FluentAssertions.Execution.LateBoundTestFramework.Throw(String message)
+   at FluentAssertions.Execution.DefaultAssertionStrategy.HandleFailure(String message)
+   at FluentAssertions.Execution.AssertionScope.AddPreFormattedFailure(String formattedFailureMessage)
+   at FluentAssertions.Execution.AssertionChain.FailWith(Func`1 getFailureReason)
+   at FluentAssertions.Execution.AssertionChain.FailWith(Func`1 getFailureReason)
+   at FluentAssertions.Execution.AssertionChain.FailWith(String message, Object[] args)
+   at FluentAssertions.Primitives.EnumAssertions`2.Be(TEnum expected, String because, Object[] becauseArgs)
+   at RestfulBooker.Tests.Api.Booking.UpdateBookingTests.Patch_WithoutAuth_ShouldReturn401() in D:\Eneco Assignment\src\tests\RestfulBooker.Tests\Api\Booking\UpdateBookingTests.cs:line 201
+   at NUnit.Framework.Internal.TaskAwaitAdapter.GenericAdapter`1.BlockUntilCompleted()
+   at NUnit.Framework.Internal.MessagePumpStrategy.NoMessagePumpStrategy.WaitForCompletion(AwaitAdapter awaiter)
+   at NUnit.Framework.Internal.AsyncToSyncAdapter.Await[TResult](TestExecutionContext context, Func`1 invoke)
+   at NUnit.Framework.Internal.AsyncToSyncAdapter.Await(TestExecutionContext context, Func`1 invoke)
+   at NUnit.Framework.Internal.Commands.TestMethodCommand.RunTestMethod(TestExecutionContext context)
+   at NUnit.Framework.Internal.Commands.TestMethodCommand.Execute(TestExecutionContext context)
+   at NUnit.Framework.Internal.Commands.BeforeAndAfterTestCommand.<>c__DisplayClass1_0.<Execute>b__0()
+   at NUnit.Framework.Internal.Commands.DelegatingTestCommand.RunTestMethodInThreadAbortSafeZone(TestExecutionContext context, Action action)
+        </td>
+      </tr>
+  </tbody>
+</table></div>
+          </div>
+        </li>
+        <li class="test-item" status="pass" test-id="18"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">CreateBooking_WithVariousPayloads_ShouldSucceed(RestfulBooker.Tests.Dtos.BookingDto)</p>
+            <p class="text-sm">
+              <span>10:14:38 PM</span> / <span>508.41 ms</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+            <div class="detail-head">
+              <div class="p-v-10">
+                <div class="info">
+                  <h5 class="test-status text-pass">CreateBooking_WithVariousPayloads_ShouldSucceed(RestfulBooker.Tests.Dtos.BookingDto)</h5>
+                  <span class='badge badge-success'>10/22/2025 10:14:38 PM</span>
+                  <span class='badge badge-danger'>10/22/2025 10:14:38 PM</span>
+                  <span class='badge badge-default'>508.41 ms</span>
+                  &middot; <span class='uri-anchor badge badge-default'>#test-id=18</span>
+                  <span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
+                  <span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
+                  <span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
+                </div>
+              </div>
+            </div>
+
+
+<div class="detail-body mt-4">
+
+
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>Oct 22, 2025 22:14:38</td>
+        <td>
+Test passed        </td>
+      </tr>
+  </tbody>
+</table></div>
+          </div>
+        </li>
+        <li class="test-item" status="pass" test-id="19"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">CreateBooking_WithVariousPayloads_ShouldSucceed(RestfulBooker.Tests.Dtos.BookingDto)</p>
+            <p class="text-sm">
+              <span>10:14:38 PM</span> / <span>498.39 ms</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+            <div class="detail-head">
+              <div class="p-v-10">
+                <div class="info">
+                  <h5 class="test-status text-pass">CreateBooking_WithVariousPayloads_ShouldSucceed(RestfulBooker.Tests.Dtos.BookingDto)</h5>
+                  <span class='badge badge-success'>10/22/2025 10:14:38 PM</span>
+                  <span class='badge badge-danger'>10/22/2025 10:14:38 PM</span>
+                  <span class='badge badge-default'>498.39 ms</span>
+                  &middot; <span class='uri-anchor badge badge-default'>#test-id=19</span>
+                  <span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
+                  <span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
+                  <span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
+                </div>
+              </div>
+            </div>
+
+
+<div class="detail-body mt-4">
+
+
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>Oct 22, 2025 22:14:38</td>
+        <td>
+Test passed        </td>
+      </tr>
+  </tbody>
+</table></div>
+          </div>
+        </li>
+        <li class="test-item" status="pass" test-id="20"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">CreateBooking_WithVariousPayloads_ShouldSucceed(RestfulBooker.Tests.Dtos.BookingDto)</p>
+            <p class="text-sm">
+              <span>10:14:38 PM</span> / <span>542.08 ms</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+            <div class="detail-head">
+              <div class="p-v-10">
+                <div class="info">
+                  <h5 class="test-status text-pass">CreateBooking_WithVariousPayloads_ShouldSucceed(RestfulBooker.Tests.Dtos.BookingDto)</h5>
+                  <span class='badge badge-success'>10/22/2025 10:14:38 PM</span>
+                  <span class='badge badge-danger'>10/22/2025 10:14:39 PM</span>
+                  <span class='badge badge-default'>542.08 ms</span>
+                  &middot; <span class='uri-anchor badge badge-default'>#test-id=20</span>
+                  <span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
+                  <span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
+                  <span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
+                </div>
+              </div>
+            </div>
+
+
+<div class="detail-body mt-4">
+
+
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>Oct 22, 2025 22:14:39</td>
+        <td>
+Test passed        </td>
+      </tr>
+  </tbody>
+</table></div>
+          </div>
+        </li>
+        <li class="test-item" status="pass" test-id="21"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">Booking_GetByCheckinDate_ShouldReturnAllDatesGreaterThanOrEqual</p>
+            <p class="text-sm">
+              <span>10:14:38 PM</span> / <span>374.83 ms</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+            <div class="detail-head">
+              <div class="p-v-10">
+                <div class="info">
+                  <h5 class="test-status text-pass">Booking_GetByCheckinDate_ShouldReturnAllDatesGreaterThanOrEqual</h5>
+                  <span class='badge badge-success'>10/22/2025 10:14:38 PM</span>
+                  <span class='badge badge-danger'>10/22/2025 10:14:38 PM</span>
+                  <span class='badge badge-default'>374.83 ms</span>
+                  &middot; <span class='uri-anchor badge badge-default'>#test-id=21</span>
+                  <span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
+                  <span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
+                  <span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
+                </div>
+              </div>
+            </div>
+
+
+<div class="detail-body mt-4">
+
+
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>Oct 22, 2025 22:14:38</td>
+        <td>
+Sending GET /booking?checkin=2025-01-01        </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
-        <td>Oct 22, 2025 20:05:33</td>
+        <td>Oct 22, 2025 22:14:38</td>
         <td>
 Test passed        </td>
+      </tr>
+  </tbody>
+</table></div>
+          </div>
+        </li>
+        <li class="test-item" status="pass" test-id="22"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">Booking_GetByCheckoutDate_ShouldReturnAllDatesGreaterThanOrEqual</p>
+            <p class="text-sm">
+              <span>10:14:38 PM</span> / <span>259.87 ms</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+            <div class="detail-head">
+              <div class="p-v-10">
+                <div class="info">
+                  <h5 class="test-status text-pass">Booking_GetByCheckoutDate_ShouldReturnAllDatesGreaterThanOrEqual</h5>
+                  <span class='badge badge-success'>10/22/2025 10:14:38 PM</span>
+                  <span class='badge badge-danger'>10/22/2025 10:14:38 PM</span>
+                  <span class='badge badge-default'>259.87 ms</span>
+                  &middot; <span class='uri-anchor badge badge-default'>#test-id=22</span>
+                  <span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
+                  <span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
+                  <span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
+                </div>
+              </div>
+            </div>
+
+
+<div class="detail-body mt-4">
+
+
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>Oct 22, 2025 22:14:38</td>
+        <td>
+Sending GET /booking?checkout=2025-01-01        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>Oct 22, 2025 22:14:38</td>
+        <td>
+Test passed        </td>
+      </tr>
+  </tbody>
+</table></div>
+          </div>
+        </li>
+        <li class="test-item" status="pass" test-id="24"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">Booking_GetByLastName_ShouldReturnMatchingIds</p>
+            <p class="text-sm">
+              <span>10:14:38 PM</span> / <span>357.12 ms</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+            <div class="detail-head">
+              <div class="p-v-10">
+                <div class="info">
+                  <h5 class="test-status text-pass">Booking_GetByLastName_ShouldReturnMatchingIds</h5>
+                  <span class='badge badge-success'>10/22/2025 10:14:38 PM</span>
+                  <span class='badge badge-danger'>10/22/2025 10:14:38 PM</span>
+                  <span class='badge badge-default'>357.12 ms</span>
+                  &middot; <span class='uri-anchor badge badge-default'>#test-id=24</span>
+                  <span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
+                  <span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
+                  <span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
+                </div>
+              </div>
+            </div>
+
+
+<div class="detail-body mt-4">
+
+
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>Oct 22, 2025 22:14:38</td>
+        <td>
+Sending GET /booking?lastname=Lastname Test-Kaz        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>Oct 22, 2025 22:14:38</td>
+        <td>
+Test passed        </td>
+      </tr>
+  </tbody>
+</table></div>
+          </div>
+        </li>
+        <li class="test-item" status="pass" test-id="23"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">Booking_GetByFirstName_ShouldReturnMatchingIds</p>
+            <p class="text-sm">
+              <span>10:14:38 PM</span> / <span>370.27 ms</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+            <div class="detail-head">
+              <div class="p-v-10">
+                <div class="info">
+                  <h5 class="test-status text-pass">Booking_GetByFirstName_ShouldReturnMatchingIds</h5>
+                  <span class='badge badge-success'>10/22/2025 10:14:38 PM</span>
+                  <span class='badge badge-danger'>10/22/2025 10:14:38 PM</span>
+                  <span class='badge badge-default'>370.27 ms</span>
+                  &middot; <span class='uri-anchor badge badge-default'>#test-id=23</span>
+                  <span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
+                  <span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
+                  <span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
+                </div>
+              </div>
+            </div>
+
+
+<div class="detail-body mt-4">
+
+
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>Oct 22, 2025 22:14:38</td>
+        <td>
+Sending GET /booking?firstname=Firstname-Test-Kaz        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>Oct 22, 2025 22:14:38</td>
+        <td>
+Test passed        </td>
+      </tr>
+  </tbody>
+</table></div>
+          </div>
+        </li>
+        <li class="test-item" status="pass" test-id="25"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">Booking_GetByMultipleFiltersDates_ShouldReturnMatchingIds</p>
+            <p class="text-sm">
+              <span>10:14:38 PM</span> / <span>370.22 ms</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+            <div class="detail-head">
+              <div class="p-v-10">
+                <div class="info">
+                  <h5 class="test-status text-pass">Booking_GetByMultipleFiltersDates_ShouldReturnMatchingIds</h5>
+                  <span class='badge badge-success'>10/22/2025 10:14:38 PM</span>
+                  <span class='badge badge-danger'>10/22/2025 10:14:38 PM</span>
+                  <span class='badge badge-default'>370.22 ms</span>
+                  &middot; <span class='uri-anchor badge badge-default'>#test-id=25</span>
+                  <span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
+                  <span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
+                  <span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
+                </div>
+              </div>
+            </div>
+
+
+<div class="detail-body mt-4">
+
+
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>Oct 22, 2025 22:14:38</td>
+        <td>
+Sending GET /booking?checkin=2025-01-01&checkout=2025-12-01        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>Oct 22, 2025 22:14:38</td>
+        <td>
+Test passed        </td>
+      </tr>
+  </tbody>
+</table></div>
+          </div>
+        </li>
+        <li class="test-item" status="pass" test-id="27"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">Booking_GetByMultipleFiltersFirstnameLastname_ShouldReturnMatchingIds</p>
+            <p class="text-sm">
+              <span>10:14:38 PM</span> / <span>355.15 ms</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+            <div class="detail-head">
+              <div class="p-v-10">
+                <div class="info">
+                  <h5 class="test-status text-pass">Booking_GetByMultipleFiltersFirstnameLastname_ShouldReturnMatchingIds</h5>
+                  <span class='badge badge-success'>10/22/2025 10:14:38 PM</span>
+                  <span class='badge badge-danger'>10/22/2025 10:14:38 PM</span>
+                  <span class='badge badge-default'>355.15 ms</span>
+                  &middot; <span class='uri-anchor badge badge-default'>#test-id=27</span>
+                  <span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
+                  <span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
+                  <span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
+                </div>
+              </div>
+            </div>
+
+
+<div class="detail-body mt-4">
+
+
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>Oct 22, 2025 22:14:38</td>
+        <td>
+Sending GET /booking?firstname=Firstname-Test-Kaz&lastname=Lastname-Test-Kaz        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>Oct 22, 2025 22:14:38</td>
+        <td>
+Test passed        </td>
+      </tr>
+  </tbody>
+</table></div>
+          </div>
+        </li>
+        <li class="test-item" status="pass" test-id="26"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">Get_BookingIds_ShouldReturnArrayOfIds</p>
+            <p class="text-sm">
+              <span>10:14:38 PM</span> / <span>512.33 ms</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+            <div class="detail-head">
+              <div class="p-v-10">
+                <div class="info">
+                  <h5 class="test-status text-pass">Get_BookingIds_ShouldReturnArrayOfIds</h5>
+                  <span class='badge badge-success'>10/22/2025 10:14:38 PM</span>
+                  <span class='badge badge-danger'>10/22/2025 10:14:39 PM</span>
+                  <span class='badge badge-default'>512.33 ms</span>
+                  &middot; <span class='uri-anchor badge badge-default'>#test-id=26</span>
+                  <span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
+                  <span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
+                  <span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
+                </div>
+              </div>
+            </div>
+
+
+<div class="detail-body mt-4">
+
+
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>Oct 22, 2025 22:14:38</td>
+        <td>
+Sending GET /booking        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>Oct 22, 2025 22:14:39</td>
+        <td>
+Test passed        </td>
+      </tr>
+  </tbody>
+</table></div>
+          </div>
+        </li>
+        <li class="test-item" status="fail" test-id="28"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">Get_WithoutAuth_ShouldReturn401</p>
+            <p class="text-sm">
+              <span>10:14:38 PM</span> / <span>283.08 ms</span>
+              <span class="badge fail-bg log float-right">Fail</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+            <div class="detail-head">
+              <div class="p-v-10">
+                <div class="info">
+                  <h5 class="test-status text-fail">Get_WithoutAuth_ShouldReturn401</h5>
+                  <span class='badge badge-success'>10/22/2025 10:14:38 PM</span>
+                  <span class='badge badge-danger'>10/22/2025 10:14:38 PM</span>
+                  <span class='badge badge-default'>283.08 ms</span>
+                  &middot; <span class='uri-anchor badge badge-default'>#test-id=28</span>
+                  <span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
+                  <span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
+                  <span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
+                </div>
+              </div>
+            </div>
+
+
+<div class="detail-body mt-4">
+
+
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>Oct 22, 2025 22:14:38</td>
+        <td>
+Sending GET /booking/2109        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log fail-bg">Fail</span></td>
+        <td>Oct 22, 2025 22:14:38</td>
+        <td>
+Test failed: Expected response.StatusCode to be HttpStatusCode.Unauthorized {value: 401} because Getting a booking without authentication should return 401 Unauthorized, but found HttpStatusCode.OK {value: 200}.        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log fail-bg">Fail</span></td>
+        <td>Oct 22, 2025 22:14:38</td>
+        <td>
+   at FluentAssertions.Execution.LateBoundTestFramework.Throw(String message)
+   at FluentAssertions.Execution.DefaultAssertionStrategy.HandleFailure(String message)
+   at FluentAssertions.Execution.AssertionScope.AddPreFormattedFailure(String formattedFailureMessage)
+   at FluentAssertions.Execution.AssertionChain.FailWith(Func`1 getFailureReason)
+   at FluentAssertions.Execution.AssertionChain.FailWith(Func`1 getFailureReason)
+   at FluentAssertions.Execution.AssertionChain.FailWith(String message, Object[] args)
+   at FluentAssertions.Primitives.EnumAssertions`2.Be(TEnum expected, String because, Object[] becauseArgs)
+   at RestfulBooker.Tests.Api.Booking.GetBookingTests.Get_WithoutAuth_ShouldReturn401() in D:\Eneco Assignment\src\tests\RestfulBooker.Tests\Api\Booking\GetBookingTests.cs:line 133
+   at NUnit.Framework.Internal.TaskAwaitAdapter.GenericAdapter`1.BlockUntilCompleted()
+   at NUnit.Framework.Internal.MessagePumpStrategy.NoMessagePumpStrategy.WaitForCompletion(AwaitAdapter awaiter)
+   at NUnit.Framework.Internal.AsyncToSyncAdapter.Await[TResult](TestExecutionContext context, Func`1 invoke)
+   at NUnit.Framework.Internal.AsyncToSyncAdapter.Await(TestExecutionContext context, Func`1 invoke)
+   at NUnit.Framework.Internal.Commands.TestMethodCommand.RunTestMethod(TestExecutionContext context)
+   at NUnit.Framework.Internal.Commands.TestMethodCommand.Execute(TestExecutionContext context)
+   at NUnit.Framework.Internal.Commands.BeforeAndAfterTestCommand.<>c__DisplayClass1_0.<Execute>b__0()
+   at NUnit.Framework.Internal.Commands.DelegatingTestCommand.RunTestMethodInThreadAbortSafeZone(TestExecutionContext context, Action action)
+        </td>
       </tr>
   </tbody>
 </table></div>
@@ -147,25 +1597,25 @@ Test passed        </td>
     <div class="col-md-3">
       <div class="card"><div class="card-body">
           <p class="m-b-0">Started</p>
-          <h3>10/22/2025 8:05:32 PM</h3>
+          <h3>10/22/2025 10:14:36 PM</h3>
       </div></div>
     </div>
     <div class="col-md-3">
       <div class="card"><div class="card-body">
           <p class="m-b-0">Ended</p>
-          <h3>10/22/2025 8:05:33 PM</h3>
+          <h3>10/22/2025 10:14:39 PM</h3>
       </div></div>
     </div>
     <div class="col-md-3">
       <div class="card"><div class="card-body">
           <p class="m-b-0 text-pass">Tests Passed</p>
-          <h3>1</h3>
+          <h3>18</h3>
       </div></div>
     </div>
     <div class="col-md-3">
       <div class="card"><div class="card-body">
           <p class="m-b-0 text-fail">Tests Failed</p>
-          <h3>0</h3>
+          <h3>10</h3>
       </div></div>
     </div>
   </div>
@@ -181,12 +1631,12 @@ Test passed        </td>
           </div>
         </div>
         <div class="card-footer">
-          <div><small data-tooltip='1%'>
-            <b>1</b> tests passed
+          <div><small data-tooltip='0%'>
+            <b>18</b> tests passed
             </small>
           </div>
           <div>
-            <small data-tooltip='0%'><b>0</b> tests failed, 
+            <small data-tooltip='0%'><b>10</b> tests failed, 
             <b>0</b> skipped, <b data-tooltip='0%'>0</b> others
             </small>
           </div>
@@ -204,10 +1654,10 @@ Test passed        </td>
           </div>
         </div>
         <div class="card-footer">
-          <div><small data-tooltip='0%'><b>1</b> events passed</small></div>
+          <div><small data-tooltip='0%'><b>18</b> events passed</small></div>
           <div>
-            <small data-tooltip='0%'><b>0</b> events failed, 
-            <b data-tooltip='%'>1</b> others
+            <small data-tooltip='0%'><b>20</b> events failed, 
+            <b data-tooltip='%'>8</b> others
             </small>
           </div>
         </div>
@@ -222,7 +1672,7 @@ Test passed        </td>
     </div>
   </div></div>
   <script>
-	var timeline = { "Booking_GetByMultipleFiltersDates_ShouldReturnMatchingIds":131.0532 };
+	var timeline = { "FullBookingLifecycle_ShouldSucceed":1618.603,"Patch_InvalidChckinData_ShouldReturnBadRequest":564.0982,"Delete_ExistingBooking_ShouldRemoveBooking":641.2179,"GetAllBookings_ShouldRespondUnder2Seconds":532.3357,"Patch_InvalidFirstnameDataType_ShouldReturnBadRequest":551.0078,"Patch_InvalidDepositPaidDataType_ShouldReturnBadRequest":563.9182,"Patch_MultipleFields_ShouldUpdateAllSpecified":658.4838,"Patch_SingleFlield_ShouldUpdateFirstName":691.2532,"Patch_SingleField_ShouldUpdateDepositPaid":691.2456,"Patch_NonExistentId_ShouldReturn404":396.535,"Patch_InvalidLastnameDataType_ShouldReturnBadRequest":551.0528,"Patch_InvalidTotalPriceDataType_ShouldReturnBadRequest":550.9825,"Delete_WithoutAuth_ShouldReturn401":531.5688,"Patch_SingleField_ShouldUpdateLastName":691.2228,"Delete_NonExistentBookingId_ShouldReturn404":396.5157,"Patch_SingleField_ShouldUpdateTotalPrice":690.998,"Patch_WithoutAuth_ShouldReturn401":134.9088,"CreateBooking_WithVariousPayloads_ShouldSucceed(RestfulBooker.Tests.Dtos.BookingDto)":508.4071,"CreateBooking_WithVariousPayloads_ShouldSucceed(RestfulBooker.Tests.Dtos.BookingDto)":498.3868,"CreateBooking_WithVariousPayloads_ShouldSucceed(RestfulBooker.Tests.Dtos.BookingDto)":542.0785,"Booking_GetByCheckinDate_ShouldReturnAllDatesGreaterThanOrEqual":374.8318,"Booking_GetByCheckoutDate_ShouldReturnAllDatesGreaterThanOrEqual":259.8742,"Booking_GetByLastName_ShouldReturnMatchingIds":357.1248,"Booking_GetByFirstName_ShouldReturnMatchingIds":370.2737,"Booking_GetByMultipleFiltersDates_ShouldReturnMatchingIds":370.2161,"Booking_GetByMultipleFiltersFirstnameLastname_ShouldReturnMatchingIds":355.1532,"Get_BookingIds_ShouldReturnArrayOfIds":512.3308,"Get_WithoutAuth_ShouldReturn401":283.0772 };
   </script>
   <div class="row">
       <div class="col-md-4 sysenv-container">
@@ -251,15 +1701,15 @@ Test passed        </td>
 </div>
 <script>
   var statusGroup = {
-    parentCount: 1,
+    parentCount: 28,
     childCount: 0,
     grandChildCount: 0,
-    eventsCount: 2,
+    eventsCount: 46,
 
-passParent:1,failParent:0,warningParent:0,skipParent:0,    
+passParent:18,failParent:10,warningParent:0,skipParent:0,    
 passChild:0,failChild:0,warningChild:0,skipChild:0,infoChild:0,    
 passGrandChild:0,failGrandChild:0,warningGrandChild:0,skipGrandChild:0,infoGrandChild:0,    
-passEvents:1,failEvents:0,warningEvents:0,skipEvents:0,infoEvents:1,  };
+passEvents:18,failEvents:20,warningEvents:0,skipEvents:0,infoEvents:8,  };
 </script>
 
     </div>

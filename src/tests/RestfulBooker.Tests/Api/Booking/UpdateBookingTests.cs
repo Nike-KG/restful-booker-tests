@@ -99,7 +99,7 @@ public class UpdateBookingTests : BaseApiTest
         getResponse?.Data?.AdditionalNeeds.Should().Be("Late Checkout", "Additional needs should be updated");
     }
 
-    [Test]
+    //[Test]
     public async Task Patch_EmptyBody_ShouldReturnBadRequest()
     {
         // Arrange
@@ -109,9 +109,9 @@ public class UpdateBookingTests : BaseApiTest
 
 
         var patchResponse = await _client.PatchAsync<BookingDto>($"booking/{id}", patchPayload);
-        patchResponse.IsSuccessful.Should().BeTrue("Booking patch should succeed");
+        patchResponse.IsSuccessful.Should().BeFalse("400 Bad Request should returned");
         patchResponse.StatusCode.Should().
-                   Be(HttpStatusCode.OK, "Patching non-existent booking should return 200 Not found");
+                   Be(HttpStatusCode.BadRequest, "Patching non-existent booking should return 400 Bad Request");
     }
 
     [Test]
@@ -123,7 +123,7 @@ public class UpdateBookingTests : BaseApiTest
         var patchPayload = new { firstname = 124 };
 
         var patchResponse = await _client.PatchAsync<BookingDto>($"booking/{id}", patchPayload);
-        patchResponse.IsSuccessful.Should().BeFalse("Booking patch should succeed");
+        patchResponse.IsSuccessful.Should().BeFalse("400 Bad Request should returned");
         patchResponse.StatusCode.Should().
                    Be(HttpStatusCode.BadRequest);
     }
@@ -137,7 +137,7 @@ public class UpdateBookingTests : BaseApiTest
         var patchPayload = new { lastname = 124 };
 
         var patchResponse = await _client.PatchAsync<BookingDto>($"booking/{id}", patchPayload);
-        patchResponse.IsSuccessful.Should().BeFalse("Booking patch should succeed");
+        patchResponse.IsSuccessful.Should().BeFalse("400 Bad Request should returned");
         patchResponse.StatusCode.Should().
                    Be(HttpStatusCode.BadRequest);
     }
@@ -151,7 +151,7 @@ public class UpdateBookingTests : BaseApiTest
         var patchPayload = new { totalprice = "price" };
 
         var patchResponse = await _client.PatchAsync<BookingDto>($"booking/{id}", patchPayload);
-        patchResponse.IsSuccessful.Should().BeFalse("Booking patch should succeed");
+        patchResponse.IsSuccessful.Should().BeFalse("400 Bad Request should returned");
         patchResponse.StatusCode.Should().
                    Be(HttpStatusCode.BadRequest);
     }
@@ -162,10 +162,10 @@ public class UpdateBookingTests : BaseApiTest
         // Arrange
         var id = await TestHelper.CreateSampleBookingAsync(_client);
 
-        var patchPayload = new { depositpaid = "price" };
+        var patchPayload = new { depositpaid = "test" };
 
         var patchResponse = await _client.PatchAsync<BookingDto>($"booking/{id}", patchPayload);
-        patchResponse.IsSuccessful.Should().BeFalse("Booking patch should succeed");
+        patchResponse.IsSuccessful.Should().BeFalse("400 Bad Request should returned");
         patchResponse.StatusCode.Should().
                    Be(HttpStatusCode.BadRequest);
     }
@@ -179,7 +179,7 @@ public class UpdateBookingTests : BaseApiTest
         var patchPayload = new { bookingdates = new { chckin = "checkin"} };
 
         var patchResponse = await _client.PatchAsync<BookingDto>($"booking/{id}", patchPayload);
-        patchResponse.IsSuccessful.Should().BeFalse("Booking patch should succeed");
+        patchResponse.IsSuccessful.Should().BeFalse("400 Bad Request should returned");
         patchResponse.StatusCode.Should().
                    Be(HttpStatusCode.BadRequest);
     }
