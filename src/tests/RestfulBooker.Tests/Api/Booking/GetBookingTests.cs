@@ -116,11 +116,9 @@ public class GetBookingTests : BaseApiTest
 
         // Assert
         response.IsSuccessful.Should().BeTrue("API should return 200 OK");
-        response.Content.Should().NotBeNullOrEmpty();
-
-        // Deserialize Json to dynamic
-        var json = JsonDocument.Parse(response.Content!);
-        json.RootElement.GetArrayLength().Should().BeGreaterThan(0, "there should be at least one booking in the system");
+        response.Data.Should().NotBeNullOrEmpty();
+        var ids = TestHelper.ExtractIds(response.Data!);
+        ids.Should().HaveCountGreaterThan(0);
 
     }
 
