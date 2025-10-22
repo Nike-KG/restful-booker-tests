@@ -1,15 +1,14 @@
 ﻿using Microsoft.Extensions.Configuration;
 
-namespace RestfulBookerTests.Api;
+namespace RestfulBooker.Tests.Utils;
 
-public  static class ConfigurationHelper
+public static class ConfigurationHelper
 {
     private static IConfigurationRoot? _config;
 
     public static IConfigurationRoot Config => _config ??= new ConfigurationBuilder()
         .SetBasePath(AppContext.BaseDirectory)
-        .AddJsonFile(Path.Combine("Resources", "appsettings.json"), optional: false, reloadOnChange: true)
+        .AddJsonFile(Path.Combine("Resources", "Config", "appsettings.json"), optional: false, reloadOnChange: true)
         .Build();
-        
-    }
 
+}

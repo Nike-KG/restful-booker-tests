@@ -1,29 +1,30 @@
-﻿using FluentAssertions;
-using RestfulBookerTests.Api;
+﻿using RestfulBooker.Tests.Utils;
 using System.Text.Json;
+using FluentAssertions;
+using RestfulBooker.Tests.Dtos;
 
-namespace RestfulBookerTests.Booking;
+namespace RestfulBooker.Tests.Api.Integration;
 
 public class E2EBookingFlowTest
 {
     private readonly ApiClient _client = new();
 
-    [Fact]
+    [Test]
     public async Task FullBookingLifecycle_ShouldSucceed()
     {
         // Create.
-        var createPayload = new
+        var createPayload = new BookingDto
         {
-            firstname = "E2E",
-            lastname = "Flow",
-            totalprice = 500,
-            depositpaid = true,
-            bookingdates = new
+            FirstName = "E2E",
+            LastName = "Flow",
+            TotalPrice = 500,
+            DepositPaid = true,
+            BookingDates = new BookingDatesDto
             {
-                checkin = "2025-12-02",
-                checkout = "2025-12-12"
+                CheckIn = "2025-12-02",
+                CheckOut = "2025-12-12"
             },
-            additionalneeds = "Dinner"
+            AdditionalNeeds = "Dinner"
         };
 
         var createResponse = await _client.PostAsync("booking", createPayload);
@@ -39,7 +40,7 @@ public class E2EBookingFlowTest
         patchResponse.IsSuccessful.Should().BeTrue("Booking patch should succeed");
 
         // Verify via GET.
-        var getResponse = await _client.GetAsync($"booking/{id}");
+        var getResponse = await _client.GetByIdAsync($"booking/{id}");
         getResponse.IsSuccessful.Should().BeTrue("Booking retrieval should succeed");
         var json = JsonDocument.Parse(getResponse.Content!);
         json.RootElement.GetProperty("firstname").GetString().Should().Be("E2E-Updated", "First name should be updated");
@@ -49,13 +50,7 @@ public class E2EBookingFlowTest
         deleteResponse.StatusCode.Should().Be(System.Net.HttpStatusCode.Created, "Deleting an existing booking should return 201 created");
 
         // confirm deletion.
-        var getAfterDeleteResponse = await _client.GetAsync($"booking/{id}");
+        var getAfterDeleteResponse = await _client.GetByIdAsync($"booking/{id}");
         getAfterDeleteResponse.StatusCode.Should().Be(System.Net.HttpStatusCode.NotFound, "Deleted booking should return 404 Not Found");
     }
-
-
-
-
-
-
 }

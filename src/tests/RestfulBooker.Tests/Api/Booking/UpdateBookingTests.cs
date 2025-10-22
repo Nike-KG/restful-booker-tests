@@ -1,8 +1,9 @@
 ﻿using FluentAssertions;
-using RestfulBookerTests.Api;
+using RestfulBooker.Tests.Utils;
 using System.Text.Json;
 
-namespace RestfulBookerTests.Booking;
+namespace RestfulBooker.Tests.Api.Booking;
+
 public class UpdateBookingTests
 {
     private readonly ApiClient _client = new();
@@ -32,25 +33,25 @@ public class UpdateBookingTests
         return id;
     }
 
-    [Fact]
+   [Test]
     public async Task Patch_SingleFlield_ShouldUpdateFirstName()
     {
-            // Arrange
-            var id = await CreateBookingAsync();
+        // Arrange
+        var id = await CreateBookingAsync();
 
-            var patchPayload = new { firstname = "John" };
-            var patchResponse = await _client.PatchAsync($"booking/{id}", patchPayload);
-            patchResponse.IsSuccessful.Should().BeTrue("Booking patch should succeed");
+        var patchPayload = new { firstname = "John" };
+        var patchResponse = await _client.PatchAsync($"booking/{id}", patchPayload);
+        patchResponse.IsSuccessful.Should().BeTrue("Booking patch should succeed");
 
 
-            // verify via GET.
-            var getResponse = await _client.GetAsync($"booking/{id}");
-            getResponse.IsSuccessful.Should().BeTrue("Booking retrieval should succeed");
-            var json = JsonDocument.Parse(getResponse.Content!);
-            json.RootElement.GetProperty("firstname").GetString().Should().Be("John", "First name should be updated");
-        }
+        // verify via GET.
+        var getResponse = await _client.GetByIdAsync($"booking/{id}");
+        getResponse.IsSuccessful.Should().BeTrue("Booking retrieval should succeed");
+        var json = JsonDocument.Parse(getResponse.Content!);
+        json.RootElement.GetProperty("firstname").GetString().Should().Be("John", "First name should be updated");
+    }
 
-    [Fact]
+   [Test]
     public async Task Patch_SingleField_ShouldUpdateLastName()
     {
         // Arrange
@@ -61,13 +62,13 @@ public class UpdateBookingTests
         patchResponse.IsSuccessful.Should().BeTrue("Booking patch should succeed");
 
         // verify via GET.
-        var getResponse = await _client.GetAsync($"booking/{id}");
+        var getResponse = await _client.GetByIdAsync($"booking/{id}");
         getResponse.IsSuccessful.Should().BeTrue("Booking retrieval should succeed");
         var json = JsonDocument.Parse(getResponse.Content!);
         json.RootElement.GetProperty("lastname").GetString().Should().Be("Petty", "Last name should be updated");
     }
 
-    [Fact]
+   [Test]
     public async Task Patch_SingleField_ShouldUpdateTotalPrice()
     {
         // Arrange
@@ -78,13 +79,13 @@ public class UpdateBookingTests
         patchResponse.IsSuccessful.Should().BeTrue("Booking patch should succeed");
 
         // verify via GET.
-        var getResponse = await _client.GetAsync($"booking/{id}");
+        var getResponse = await _client.GetByIdAsync($"booking/{id}");
         getResponse.IsSuccessful.Should().BeTrue("Booking retrieval should succeed");
         var json = JsonDocument.Parse(getResponse.Content!);
         json.RootElement.GetProperty("totalprice").GetInt32().Should().Be(250, "Total price should be updated");
     }
 
-    [Fact]
+   [Test]
     public async Task Patch_SingleField_ShouldUpdateDepositPaid()
     {
         // Arrange
@@ -95,56 +96,55 @@ public class UpdateBookingTests
         patchResponse.IsSuccessful.Should().BeTrue("Booking patch should succeed");
 
         // verify via GET.
-        var getResponse = await _client.GetAsync($"booking/{id}");
-        getResponse.IsSuccessful.Should().BeTrue("Booking retrieval should succeed"); 
+        var getResponse = await _client.GetByIdAsync($"booking/{id}");
+        getResponse.IsSuccessful.Should().BeTrue("Booking retrieval should succeed");
         var json = JsonDocument.Parse(getResponse.Content!);
         json.RootElement.GetProperty("depositpaid").GetBoolean().Should().BeFalse("Deposit paid should be updated");
     }
 
-    [Fact]
+   [Test]
     public async Task Patch_MultipleFields_ShouldUpdateAllSpecified()
     {
-            // Arrange
-            var id = await CreateBookingAsync();
+        // Arrange
+        var id = await CreateBookingAsync();
 
-            var patchPayload = new
-            {
-                firstname = "Multi",
-                lastname = "Update",
-                totalprice = 300,
-                depositpaid = false,
-                bookingdates = new
-                {
-                    checkin = "2025-02-01",
-                    checkout = "2020-02-10"
-                },
-                additionalneeds = "Late Checkout"
-            };
-
-            var patchResponse = await _client.PatchAsync($"booking/{id}", patchPayload);
-            patchResponse.IsSuccessful.Should().BeTrue("Booking patch should succeed");
-
-            var getResponse = await _client.GetAsync($"booking/{id}");
-            var json = JsonDocument.Parse(getResponse.Content!);
-            json.RootElement.GetProperty("firstname").GetString().Should().Be("Multi", "First name should be updated");
-            json.RootElement.GetProperty("lastname").GetString().Should().Be("Update", "Last name should be updated");
-
-        }
-
-    [Fact]
-    public async Task Patch_NonExistentId_ShouldReturn405() 
+        var patchPayload = new
         {
-            var patchPayload = new { firstname = "Ghost" };
-            var response = await _client.PatchAsync("booking/99999", patchPayload);
+            firstname = "Multi",
+            lastname = "Update",
+            totalprice = 300,
+            depositpaid = false,
+            bookingdates = new
+            {
+                checkin = "2025-02-01",
+                checkout = "2020-02-10"
+            },
+            additionalneeds = "Late Checkout"
+        };
+
+        var patchResponse = await _client.PatchAsync($"booking/{id}", patchPayload);
+        patchResponse.IsSuccessful.Should().BeTrue("Booking patch should succeed");
+
+        var getResponse = await _client.GetAsync($"booking/{id}");
+        var json = JsonDocument.Parse(getResponse.Content!);
+        json.RootElement.GetProperty("firstname").GetString().Should().Be("Multi", "First name should be updated");
+        json.RootElement.GetProperty("lastname").GetString().Should().Be("Update", "Last name should be updated");
+
+    }
+
+   [Test]
+    public async Task Patch_NonExistentId_ShouldReturn405()
+    {
+        var patchPayload = new { firstname = "Ghost" };
+        var response = await _client.PatchAsync("booking/99999", patchPayload);
         response.StatusCode.Should().Be(System.Net.HttpStatusCode.MethodNotAllowed, "Patching non-existent booking should return 405");
     }
 
-    [Fact]
+   [Test]
     public async Task Patch_WithoutAuth_ShouldReturn403()
     {
-            var patchPayload = new { firstname = "NoAuth" };
-            var response = await _client.PatchAsync("booking/1", patchPayload, false);
-        response.StatusCode. Should().Be(System.Net.HttpStatusCode.Forbidden, "Patching without auth should return 403");
+        var patchPayload = new { firstname = "NoAuth" };
+        var response = await _client.PatchAsync("booking/1", patchPayload, false);
+        response.StatusCode.Should().Be(System.Net.HttpStatusCode.Forbidden, "Patching without auth should return 403");
     }
-
 }

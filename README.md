@@ -1,4 +1,4 @@
-# Restful‑Booker API Test Automation – Technical Assessment  
+﻿# Restful‑Booker API Test Automation – Technical Assessment  
 
 > A fully‑automated, CI‑driven test suite for the public **Restful‑Booker** API.  
 > Built with C#/.NET 8, xUnit, RestSharp and FluentAssertions.  

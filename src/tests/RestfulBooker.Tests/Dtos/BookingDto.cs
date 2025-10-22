@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace RestfulBookerTests.Dtos;
+namespace RestfulBooker.Tests.Dtos;
 
 /// <summary>
 /// Represents the payload for creating or updating a booking.
@@ -24,16 +24,4 @@ public class BookingDto
 
     [JsonPropertyName("additionalneeds")]
     public string? AdditionalNeeds { get; set; }
-}
-
-/// <summary>
-/// Nested dates object inside a booking.
-/// </summary>
-public class BookingDatesDto
-{
-    [JsonPropertyName("checkin")]
-    public string CheckIn { get; set; } = string.Empty;
-
-    [JsonPropertyName("checkout")]
-    public string CheckOut { get; set; } = string.Empty;
 }

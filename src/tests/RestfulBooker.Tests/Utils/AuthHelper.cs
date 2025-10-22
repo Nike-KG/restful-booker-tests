@@ -1,6 +1,6 @@
 ﻿using RestSharp;
 
-namespace RestfulBookerTests.Api;
+namespace RestfulBooker.Tests.Utils;
 
 public static class AuthHelper
 {
@@ -23,7 +23,7 @@ public static class AuthHelper
         if (!response.IsSuccessful)
         {
             throw new ApplicationException($"Auth failed : {response.StatusCode} - {response.Content}");
-          
+
         }
         // Parse JSON manually
         var json = System.Text.Json.JsonDocument.Parse(response.Content!);
