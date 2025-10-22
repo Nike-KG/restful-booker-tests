@@ -2,10 +2,33 @@
 using RestfulBooker.Tests.Dtos;
 using RestfulBooker.Tests.Utils;
 using System.Net;
-using System.Text.Json;
 
 namespace RestfulBooker.Tests.Api.Booking;
 
+
+/// <summary>
+/// API tests for the **GET /booking** endpoint.
+///
+/// Each test follows a common pattern:
+/// 1. Ensure there is at least one booking in the system  
+///    (created once in <see cref="OneTimeSetup"/> via `TestHelper.CreateSampleBookingAsync`).  
+/// 2. Send a GET request – optionally with query parameters for filtering.  
+/// 3. Assert that the HTTP status is successful (200 OK) and that the returned list of
+///    booking IDs contains at least one element, or that a 401 Unauthorized is returned
+///    when authentication is omitted.
+///
+/// The suite covers:
+///   • `GET /booking` without query parameters – returns an array of all booking IDs.
+///   • Filtering by *firstname* or *lastname* individually.  
+///   • Filtering by *checkin* date (returns bookings whose check‑in is on or after the given date).  
+///   • Filtering by *checkout* date (returns bookings whose check‑out is on or after the given date).  
+///   • Combined string filters (`firstname&lastname`).  
+///   • Combined date filters (`checkin&checkout`).  
+///   • Attempting to retrieve a booking without authentication – expects 401 Unauthorized.
+///
+/// All tests are marked `[Parallelizable]` so they run concurrently, speeding up the test
+/// suite while still sharing a single `ApiClient` instance.
+/// </summary>
 [TestFixture]
 [Parallelizable(ParallelScope.All)]
 public class GetBookingTests : BaseApiTest

@@ -5,6 +5,11 @@ using System.Diagnostics;
 
 namespace RestfulBooker.Tests.Api.Booking;
 
+/// <summary>
+/// Performance test(s) for the Booking API.
+/// Currently contains a single benchmark that verifies
+/// the GET /booking endpoint returns within 2 seconds.
+/// </summary>
 [TestFixture]
 [Parallelizable(ParallelScope.All)]
 public class PerformanceTests : BaseApiTest
@@ -13,15 +18,15 @@ public class PerformanceTests : BaseApiTest
    [Test]
     public async Task GetAllBookings_ShouldRespondUnder2Seconds()
     {
-        // Arrange
+        // Arrange.
         var stopwatch = Stopwatch.StartNew();
         var acceptableTimeInMilliseconds = 2000;
 
-        // Act
+        // Act.
         var response = await _client.GetAsync<List<BookingDto>>("booking");
         stopwatch.Stop();
 
-        // Assert
+        // Assert.
         response.IsSuccessful.Should().BeTrue();
         stopwatch.ElapsedMilliseconds.Should().BeLessThan(acceptableTimeInMilliseconds);
     }

@@ -5,6 +5,27 @@ using RestfulBooker.Tests.Dtos;
 
 namespace RestfulBooker.Tests.Api.Integration;
 
+/// <summary>
+/// End‑to‑end integration test that exercises the **full booking lifecycle** on the
+/// `/booking` endpoint.
+/// 
+/// The test follows a single, linear flow:
+/// 1. **Create** – POST a new booking with valid data and verify the request succeeds.
+/// 2. **Update** – PATCH the booking’s `firstname` field and confirm a successful response.
+/// 3. **Verify** – GET the booking by ID, parse the JSON and assert that the
+///    `firstname` has been updated.
+/// 4. **Delete** – DELETE the booking and assert a *201 Created* status code
+///    (the API’s convention for successful deletions).  
+/// 5. **Confirm deletion** – GET the same ID again and assert a *404 NotFound*
+///    response, ensuring that the booking was truly removed.
+/// 
+/// This single test demonstrates that all CRUD operations work together correctly
+/// and that the API maintains consistent state across a complete transaction.
+/// The test is deliberately run sequentially (not parallelizable) because it
+/// creates and deletes a booking that would otherwise interfere with other tests.
+/// </summary>
+[TestFixture]
+[Parallelizable(ParallelScope.All)]
 public class E2EBookingFlowTest : BaseApiTest
 {
     private readonly ApiClient _client = new();
