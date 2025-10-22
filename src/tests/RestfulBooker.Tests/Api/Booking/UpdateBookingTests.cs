@@ -12,36 +12,11 @@ public class UpdateBookingTests : BaseApiTest
 {
     private readonly ApiClient _client = new();
 
-    // Helper to create a booking that we can update.
-    private async Task<int> CreateBookingAsync()
-    {
-        var payload = new
-        {
-            firstname = "Update",
-            lastname = "Brown",
-            totalprice = 111,
-            depositpaid = true,
-            bookingdates = new
-            {
-                checkin = "2018-01-01",
-                checkout = "2019-01-01"
-            },
-            additionalneeds = "Breakfast"
-        };
-        var createResponse = await _client.PostAsync<BookingDto>("booking", payload);
-        createResponse.IsSuccessful.Should().BeTrue("Booking creation should succeed");
-        var id = JsonDocument.Parse(createResponse.Content!)
-            .RootElement
-            .GetProperty("bookingid")
-            .GetInt32();
-        return id;
-    }
-
    [Test]
     public async Task Patch_SingleFlield_ShouldUpdateFirstName()
     {
         // Arrange
-        var id = await CreateBookingAsync();
+        var id = await TestHelper.CreateSampleBookingAsync(_client);
 
         var patchPayload = new { firstname = "John" };
         var patchResponse = await _client.PatchAsync<BookingDto>($"booking/{id}", patchPayload);
@@ -51,15 +26,14 @@ public class UpdateBookingTests : BaseApiTest
         // verify via GET.
         var getResponse = await _client.GetByIdAsync<BookingDto>($"booking/{id}");
         getResponse.IsSuccessful.Should().BeTrue("Booking retrieval should succeed");
-        var json = JsonDocument.Parse(getResponse.Content!);
-        json.RootElement.GetProperty("firstname").GetString().Should().Be("John", "First name should be updated");
+        getResponse?.Data?.FirstName.Should().Be("John", "First name should be updated"); ;
     }
 
    [Test]
     public async Task Patch_SingleField_ShouldUpdateLastName()
     {
         // Arrange
-        var id = await CreateBookingAsync();
+        var id = await TestHelper.CreateSampleBookingAsync(_client);
 
         var patchPayload = new { lastname = "Petty" };
         var patchResponse = await _client.PatchAsync<BookingDto>($"booking/{id}", patchPayload);
@@ -68,15 +42,14 @@ public class UpdateBookingTests : BaseApiTest
         // verify via GET.
         var getResponse = await _client.GetByIdAsync<BookingDto>($"booking/{id}");
         getResponse.IsSuccessful.Should().BeTrue("Booking retrieval should succeed");
-        var json = JsonDocument.Parse(getResponse.Content!);
-        json.RootElement.GetProperty("lastname").GetString().Should().Be("Petty", "Last name should be updated");
+        getResponse?.Data?.LastName.Should().Be("Petty", "Last name should be updated"); 
     }
 
    [Test]
     public async Task Patch_SingleField_ShouldUpdateTotalPrice()
     {
         // Arrange
-        var id = await CreateBookingAsync();
+        var id = await TestHelper.CreateSampleBookingAsync(_client);
 
         var patchPayload = new { totalprice = 250 };
         var patchResponse = await _client.PatchAsync<BookingDto>($"booking/{id}", patchPayload);
@@ -85,15 +58,14 @@ public class UpdateBookingTests : BaseApiTest
         // verify via GET.
         var getResponse = await _client.GetByIdAsync<BookingDto>($"booking/{id}");
         getResponse.IsSuccessful.Should().BeTrue("Booking retrieval should succeed");
-        var json = JsonDocument.Parse(getResponse.Content!);
-        json.RootElement.GetProperty("totalprice").GetInt32().Should().Be(250, "Total price should be updated");
+        getResponse?.Data?.TotalPrice.Should().Be(250, "Last name should be updated");
     }
 
    [Test]
     public async Task Patch_SingleField_ShouldUpdateDepositPaid()
     {
         // Arrange
-        var id = await CreateBookingAsync();
+        var id = await TestHelper.CreateSampleBookingAsync(_client);
 
         var patchPayload = new { depositpaid = false };
         var patchResponse = await _client.PatchAsync<BookingDto>($"booking/{id}", patchPayload);
@@ -102,38 +74,30 @@ public class UpdateBookingTests : BaseApiTest
         // verify via GET.
         var getResponse = await _client.GetByIdAsync<BookingDto>($"booking/{id}");
         getResponse.IsSuccessful.Should().BeTrue("Booking retrieval should succeed");
-        var json = JsonDocument.Parse(getResponse.Content!);
-        json.RootElement.GetProperty("depositpaid").GetBoolean().Should().BeFalse("Deposit paid should be updated");
+        getResponse?.Data?.DepositPaid.Should().BeFalse("Deposit paid should be updated");
     }
 
    [Test]
     public async Task Patch_MultipleFields_ShouldUpdateAllSpecified()
     {
         // Arrange
-        var id = await CreateBookingAsync();
+        var id = await TestHelper.CreateSampleBookingAsync(_client);
 
-        var patchPayload = new
-        {
-            firstname = "Multi",
-            lastname = "Update",
-            totalprice = 300,
-            depositpaid = false,
-            bookingdates = new
-            {
-                checkin = "2025-02-01",
-                checkout = "2020-02-10"
-            },
-            additionalneeds = "Late Checkout"
-        };
+        var patchPayload = BookingDataBuilder.PatchBookingMultipleFields(
+            "Multi", "Update", 300, false, "2025-02-01", "2025-10-01", "Late Checkout");
+
 
         var patchResponse = await _client.PatchAsync<BookingDto>($"booking/{id}", patchPayload);
         patchResponse.IsSuccessful.Should().BeTrue("Booking patch should succeed");
 
-        var getResponse = await _client.GetAsync<List<BookingDto>>($"booking/{id}");
-        var json = JsonDocument.Parse(getResponse.Content!);
-        json.RootElement.GetProperty("firstname").GetString().Should().Be("Multi", "First name should be updated");
-        json.RootElement.GetProperty("lastname").GetString().Should().Be("Update", "Last name should be updated");
-
+        var getResponse = await _client.GetByIdAsync<BookingDto>($"booking/{id}");
+        getResponse?.Data?.FirstName.Should().Be("Multi", "First name should be updated");
+        getResponse?.Data?.LastName.Should().Be("Update", "Last name should be updated");
+        getResponse?.Data?.TotalPrice.Should().Be(300, "Total price should be updated");
+        getResponse?.Data?.DepositPaid.Should().BeFalse("Deposit paid should be updated");
+        getResponse?.Data?.BookingDates?.CheckIn.Should().Be("2025-02-01", "Checkin should be updated");
+        getResponse?.Data?.BookingDates?.CheckOut.Should().Be("2025-10-01", "Checkout name should be updated");
+        getResponse?.Data?.AdditionalNeeds.Should().Be("Late Checkout", "Additional needs should be updated");
     }
 
    [Test]

@@ -2,7 +2,6 @@
 using RestfulBooker.Tests.Dtos;
 using RestfulBooker.Tests.Utils;
 using System.Net;
-using System.Text.Json;
 
 namespace RestfulBooker.Tests.Api.Booking;
 
@@ -12,31 +11,11 @@ public class DeleteBookingTests : BaseApiTest
 {
     private readonly ApiClient _client = new();
 
-    // Reuse the create helper from UpdateBookingTests.
-    private async Task<int> CreateSampleBookingAsync()
-    {
-        var payload = new
-        {
-            firstname = "Delete",
-            Lastname = "User",
-            totalprice = 100,
-            depositpaid = true,
-            bookingdates = new { checkin = "2025-11-01", checkout = "2025-11-15" },
-            additionalneeds = "None"
-        };
-
-        var createResponse = await _client.PostAsync<BookingDto>("booking", payload);
-        return JsonDocument.Parse(createResponse.Content!)
-            .RootElement
-            .GetProperty("bookingid")
-            .GetInt32();
-    }
-
     [Test]
     public async Task Delete_ExistingBooking_ShouldRemoveBooking()
     {
         // Arrange
-        var id = await CreateSampleBookingAsync();
+        var id = await TestHelper.CreateSampleBookingAsync(_client);
 
         // Act
         var deleteResponse = await _client.DeleteAsync($"booking/{id}");
@@ -63,7 +42,7 @@ public class DeleteBookingTests : BaseApiTest
     public async Task Delete_WithoutAuth_ShouldReturn401Or403()
     {
         // Arrange
-        var id = await CreateSampleBookingAsync();
+        var id = await TestHelper.CreateSampleBookingAsync(_client);
 
         var response = await _client.DeleteAsync($"booking/{id}", isWithCookieHeader: false);
         response.StatusCode.Should()

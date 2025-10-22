@@ -17,20 +17,20 @@ public class GetBookingTests : BaseApiTest
     public async Task OneTimeSetup()
     {
         // Ensure there is at least one booking to filter against
-        createdBookingId = await CreateSampleBookingAsync();
+        createdBookingId = await TestHelper.CreateSampleBookingAsync(_client);
     }
 
     //filter by first name
     [Test]
     public async Task Booking_GetByFirstName_ShouldReturnMatchingIds()
     {
-        _test?.Value?.Info("Sending GET /booking?firstname=Jim");
+        _test?.Value?.Info("Sending GET /booking?firstname=Firstname-Test-Kaz");
         // Arrange & Act
-        var response = await _client.GetAsync<List<BookinIdDto>>("booking?firstname=Jim");
+        var response = await _client.GetAsync<List<BookinIdDto>>("booking?firstname=Firstname-Test-Kaz");
 
         // Assert
         response.IsSuccessful.Should().BeTrue();
-        var ids = ExtractIds(response.Content!);
+        var ids = TestHelper.ExtractIds(response.Data!);
         ids.Should().HaveCountGreaterThan(0);
     }
 
@@ -38,13 +38,13 @@ public class GetBookingTests : BaseApiTest
     [Test]
     public async Task Booking_GetByLastName_ShouldReturnMatchingIds()
     {
-        _test?.Value?.Info("Sending GET /booking?lastname=Brown");
+        _test?.Value?.Info("Sending GET /booking?lastname=Lastname Test-Kaz");
         // Arrange & Act
-        var response = await _client.GetAsync<List<BookinIdDto>>("booking?lastname=Brown");
+        var response = await _client.GetAsync<List<BookinIdDto>>("booking?lastname=Lastname-Test-Kaz");
 
         // Assert
         response.IsSuccessful.Should().BeTrue();
-        var ids = ExtractIds(response.Content!);
+        var ids = TestHelper.ExtractIds(response.Data!);
         ids.Should().HaveCountGreaterThan(0);
     }
 
@@ -52,13 +52,13 @@ public class GetBookingTests : BaseApiTest
     [Test]
     public async Task Booking_GetByCheckinDate_ShouldReturnAllDatesGreaterThanOrEqual()
     {
-        _test?.Value?.Info("Sending GET /booking?checkin=2018-01-01");
+        _test?.Value?.Info("Sending GET /booking?checkin=2025-01-01");
         // Arrange & Act
-        var response = await _client.GetAsync<List<BookinIdDto>>("booking?checkin=2018-01-01");
+        var response = await _client.GetAsync<List<BookinIdDto>>("booking?checkin=2025-01-01");
 
         // Assert
         response.IsSuccessful.Should().BeTrue();
-        var ids = ExtractIds(response.Content!);
+        var ids = TestHelper.ExtractIds(response.Data!);
         ids.Should().HaveCountGreaterThan(0);
     }
 
@@ -66,13 +66,13 @@ public class GetBookingTests : BaseApiTest
     [Test]
     public async Task Booking_GetByCheckoutDate_ShouldReturnAllDatesGreaterThanOrEqual()
     {
-        _test?.Value?.Info("Sending GET /booking?checkout=2019-01-01");
+        _test?.Value?.Info("Sending GET /booking?checkout=2025-01-01");
         // Arrange & Act
-        var response = await _client.GetAsync<List<BookinIdDto>>("booking?checkout=2019-01-01");
+        var response = await _client.GetAsync<List<BookinIdDto>>("booking?checkout=2025-01-01");
 
         // Assert
         response.IsSuccessful.Should().BeTrue();
-        var ids = ExtractIds(response.Content!);
+        var ids = TestHelper.ExtractIds(response.Data!);
         ids.Should().HaveCountGreaterThan(0);
     }
 
@@ -80,27 +80,27 @@ public class GetBookingTests : BaseApiTest
     [Test]
     public async Task Booking_GetByMultipleFiltersFirstnameLastname_ShouldReturnMatchingIds()
     {
-        _test?.Value?.Info("Sending GET /booking?firstname=Get&lastname=User");
+        _test?.Value?.Info("Sending GET /booking?firstname=Firstname-Test-Kaz&lastname=Lastname-Test-Kaz");
         // Arrange & Act
-        var response = await _client.GetAsync<List<BookinIdDto>>("booking?firstname=Get&lastname=User");
+        var response = await _client.GetAsync<List<BookinIdDto>>("booking?firstname=Firstname-Test-Kaz&lastname=Lastname-Test-Kaz");
 
         // Assert
         response.IsSuccessful.Should().BeTrue();
-        var ids = ExtractIds(response.Content!);
+        var ids = TestHelper.ExtractIds(response.Data!);
         ids.Should().HaveCountGreaterThan(0);
     }
 
     [Test]
     public async Task Booking_GetByMultipleFiltersDates_ShouldReturnMatchingIds()
     {
-        _test?.Value?.Info("Sending GET /booking?checking=2018-01-01&checkout=2019-01-01");
+        _test?.Value?.Info("Sending GET /booking?checking=2018-01-01&checkout=2025-12-01");
 
         // Arrange & Act
-        var response = await _client.GetAsync<List<BookinIdDto>>("booking?checkin=2018-01-01&checkout=2019-01-01");
+        var response = await _client.GetAsync<List<BookinIdDto>>("booking?checkin=2025-01-01&checkout=2025-12-01");
 
         // Assert
         response.IsSuccessful.Should().BeTrue();
-        var ids = ExtractIds(response.Content!);
+        var ids = TestHelper.ExtractIds(response.Data!);
         ids.Should().HaveCountGreaterThan(0);
     }
 
@@ -136,28 +136,4 @@ public class GetBookingTests : BaseApiTest
             BeOneOf([HttpStatusCode.Forbidden, HttpStatusCode.Unauthorized],
                 "Getting a booking without authentication should return 401 Unauthorized or 403 Forbidden");
     }
-
-    private async Task<int> CreateSampleBookingAsync()
-    {
-        var payload = new
-        {
-            firstname = "Get",
-            Lastname = "User",
-            totalprice = 100,
-            depositpaid = true,
-            bookingdates = new { checkin = "2025-11-02", checkout = "2025-11-16" },
-            additionalneeds = "None"
-        };
-
-        var createResponse = await _client.PostAsync<BookingDto>("booking", payload);
-        return JsonDocument.Parse(createResponse.Content!)
-            .RootElement
-            .GetProperty("bookingid")
-            .GetInt32();
-    }
-
-    private static IEnumerable<int> ExtractIds(string json)
-        => JsonDocument.Parse(json)
-        .RootElement.EnumerateArray()
-        .Select(e => e.GetProperty("bookingid").GetInt32());
 }
