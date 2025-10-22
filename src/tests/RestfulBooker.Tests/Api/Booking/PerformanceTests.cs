@@ -4,6 +4,8 @@ using System.Diagnostics;
 
 namespace RestfulBooker.Tests.Api.Booking;
 
+[TestFixture]
+[Parallelizable(ParallelScope.All)]
 public class PerformanceTests : BaseApiTest
 {
     private readonly ApiClient _client = new();

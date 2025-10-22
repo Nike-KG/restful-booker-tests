@@ -5,6 +5,8 @@ using System.Text.Json;
 
 namespace RestfulBooker.Tests.Api.Booking;
 
+[TestFixture]
+[Parallelizable(ParallelScope.All)]
 public class DataDrivenTests : BaseApiTest
 {
     private readonly ApiClient _client = new();

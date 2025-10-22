@@ -3,48 +3,45 @@ using RestfulBooker.Tests.Utils;
 
 namespace RestfulBooker.Tests.Api;
 
-public class BaseApiTest
+public abstract class BaseApiTest
 {
-    private ExtentReports _extent;
-    protected ExtentTest _test;
+    protected static ExtentReports Extent => ExtentReportManager.Instance;
 
-    [OneTimeSetUp]
-    public void OneTimeSetup()
-    {
-        _extent = ExtentReportManager.Instance;
-    }
+    // Thread-safe test node
+    protected ThreadLocal<ExtentTest> _test = new ThreadLocal<ExtentTest>();
 
     [SetUp]
     public void Setup()
     {
-        _test = _extent.CreateTest(TestContext.CurrentContext.Test.Name);
+        // Create a test node per test method
+        _test.Value = Extent.CreateTest(TestContext.CurrentContext.Test.Name);
     }
 
     [TearDown]
     public void TearDown()
     {
         var status = TestContext.CurrentContext.Result.Outcome.Status;
-        var stacktrace = TestContext.CurrentContext.Result.StackTrace;
         var message = TestContext.CurrentContext.Result.Message;
+        var stacktrace = TestContext.CurrentContext.Result.StackTrace;
 
         switch (status)
         {
             case NUnit.Framework.Interfaces.TestStatus.Passed:
-                _test.Pass("Test passed");
+                _test?.Value?.Pass("Test passed");
                 break;
 
             case NUnit.Framework.Interfaces.TestStatus.Failed:
-                _test.Fail("Test failed: " + message);
+                _test?.Value?.Fail("Test failed: " + message);
                 if (!string.IsNullOrEmpty(stacktrace))
-                    _test.Fail(stacktrace);
+                    _test?.Value?.Fail(stacktrace);
                 break;
 
             case NUnit.Framework.Interfaces.TestStatus.Skipped:
-                _test.Skip("Test skipped");
+                _test?.Value?.Skip("Test skipped");
                 break;
 
             default:
-                _test.Warning("Test status: " + status);
+                _test?.Value?.Warning("Test status: " + status);
                 break;
         }
     }

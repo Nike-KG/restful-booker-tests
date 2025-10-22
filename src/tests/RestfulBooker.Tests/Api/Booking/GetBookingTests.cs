@@ -4,13 +4,15 @@ using System.Text.Json;
 
 namespace RestfulBooker.Tests.Api.Booking;
 
+[TestFixture]
+[Parallelizable(ParallelScope.All)]
 public class GetBookingTests : BaseApiTest
 {
     private readonly ApiClient _client = new();
     private int createdBookingId;
 
     [OneTimeSetUp]
-    public new async Task OneTimeSetup()
+    public async Task OneTimeSetup()
     {
         // Ensure there is at least one booking to filter against
         createdBookingId = await CreateSampleBookingAsync();
@@ -20,7 +22,7 @@ public class GetBookingTests : BaseApiTest
     [Test]
     public async Task Booking_GetByFirstName_ShouldReturnMatchingIds()
     {
-        _test.Info("Sending GET /booking?firstname=Jim");
+        _test?.Value?.Info("Sending GET /booking?firstname=Jim");
         // Arrange & Act
         var response = await _client.GetAsync("booking?firstname=Jim");
 
@@ -34,7 +36,7 @@ public class GetBookingTests : BaseApiTest
     [Test]
     public async Task Booking_GetByLastName_ShouldReturnMatchingIds()
     {
-        _test.Info("Sending GET /booking?lastname=Brown");
+        _test?.Value?.Info("Sending GET /booking?lastname=Brown");
         // Arrange & Act
         var response = await _client.GetAsync("booking?lastname=Brown");
 
@@ -48,7 +50,7 @@ public class GetBookingTests : BaseApiTest
     [Test]
     public async Task Booking_GetByCheckinDate_ShouldReturnMatchingIds()
     {
-        _test.Info("Sending GET /booking?checkin=2018-01-01");
+        _test?.Value?.Info("Sending GET /booking?checkin=2018-01-01");
         // Arrange & Act
         var response = await _client.GetAsync("booking?checkin=2018-01-01");
 
@@ -62,7 +64,7 @@ public class GetBookingTests : BaseApiTest
     [Test]
     public async Task Booking_GetByCheckoutDate_ShouldReturnMatchingIds()
     {
-        _test.Info("Sending GET /booking?checkout=2019-01-01");
+        _test?.Value?.Info("Sending GET /booking?checkout=2019-01-01");
         // Arrange & Act
         var response = await _client.GetAsync("booking?checkout=2019-01-01");
 
@@ -76,7 +78,7 @@ public class GetBookingTests : BaseApiTest
     [Test]
     public async Task Booking_GetByMultipleFilters_ShouldReturnMatchingIds()
     {
-        _test.Info("Sending GET /booking?firstname=Get&lastname=User");
+        _test?.Value?.Info("Sending GET /booking?firstname=Get&lastname=User");
         // Arrange & Act
         var response = await _client.GetAsync("booking?firstname=Get&lastname=User");
 
@@ -89,7 +91,7 @@ public class GetBookingTests : BaseApiTest
     [Test]
     public async Task Get_BookingIds_ShouldReturnArrayOfIds()
     {
-        _test.Info("Sending GET /booking");
+        _test?.Value?.Info("Sending GET /booking");
         // Arrange
         var apiClient = new ApiClient();
 
@@ -111,7 +113,7 @@ public class GetBookingTests : BaseApiTest
     {
         // Arrange
         var id = createdBookingId;
-        _test.Info($"Sending GET /booking/{id}");
+        _test?.Value?.Info($"Sending GET /booking/{id}");
 
         var response = await _client.GetAsync($"booking/{id}", isWithCookieHeader: false);
         response.StatusCode.Should().Be(System.Net.HttpStatusCode.OK, "Getting a booking without authentication should return 200 OK");

@@ -9,8 +9,7 @@ public class GlobalApiTestSetup
     public void BeforeAllTests()
     {
         var extent = ExtentReportManager.Instance;
-        extent.AddSystemInfo("Environment", "QA");
-        extent.AddSystemInfo("Platform", "GitHub Actions");
+        extent.AddSystemInfo("Suite", "API Tests");
     }
 
     [OneTimeTearDown]

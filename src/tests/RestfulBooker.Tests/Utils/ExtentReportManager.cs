@@ -28,6 +28,9 @@ public class ExtentReportManager
 
                         _extent = new ExtentReports();
                         _extent.AttachReporter(spark);
+
+                        _extent.AddSystemInfo("Environment", "QA");
+                        _extent.AddSystemInfo("Platform", "GitHub Actions");
                     }
                 }
             }
