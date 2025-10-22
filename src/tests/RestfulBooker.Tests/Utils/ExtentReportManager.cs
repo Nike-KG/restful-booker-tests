@@ -6,7 +6,7 @@ namespace RestfulBooker.Tests.Utils;
 
 public class ExtentReportManager
 {
-    private static ExtentReports _extent;
+    private static ExtentReports? _extent;
     private static readonly object _lock = new object();
 
     public static ExtentReports Instance

@@ -26,3 +26,10 @@ jobs:
       - name: Run tests
         run: dotnet test --configuration Release --no-build
         working-directory: src/tests/RestfulBooker.Tests
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: Test Results
+          path: Reports/ExtentReport.html

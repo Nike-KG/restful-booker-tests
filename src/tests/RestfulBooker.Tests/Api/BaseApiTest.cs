@@ -8,7 +8,7 @@ public abstract class BaseApiTest
     protected static ExtentReports Extent => ExtentReportManager.Instance;
 
     // Thread-safe test node
-    protected ThreadLocal<ExtentTest> _test = new ThreadLocal<ExtentTest>();
+    protected ThreadLocal<ExtentTest> _test = new();
 
     [SetUp]
     public void Setup()
