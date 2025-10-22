@@ -27,7 +27,7 @@ public class E2EBookingFlowTest : BaseApiTest
             AdditionalNeeds = "Dinner"
         };
 
-        var createResponse = await _client.PostAsync("booking", createPayload);
+        var createResponse = await _client.PostAsync<BookingDto>("booking", createPayload);
         createResponse.IsSuccessful.Should().BeTrue("Booking creation should succeed");
         var id = JsonDocument.Parse(createResponse.Content!)
             .RootElement
@@ -36,11 +36,11 @@ public class E2EBookingFlowTest : BaseApiTest
 
         // update(PATCH).
         var patchPayload = new { firstname = "E2E-Updated" };
-        var patchResponse = await _client.PatchAsync($"booking/{id}", patchPayload);
+        var patchResponse = await _client.PatchAsync<BookingDto>($"booking/{id}", patchPayload);
         patchResponse.IsSuccessful.Should().BeTrue("Booking patch should succeed");
 
         // Verify via GET.
-        var getResponse = await _client.GetByIdAsync($"booking/{id}");
+        var getResponse = await _client.GetByIdAsync<BookingDto>($"booking/{id}");
         getResponse.IsSuccessful.Should().BeTrue("Booking retrieval should succeed");
         var json = JsonDocument.Parse(getResponse.Content!);
         json.RootElement.GetProperty("firstname").GetString().Should().Be("E2E-Updated", "First name should be updated");
@@ -50,7 +50,7 @@ public class E2EBookingFlowTest : BaseApiTest
         deleteResponse.StatusCode.Should().Be(System.Net.HttpStatusCode.Created, "Deleting an existing booking should return 201 created");
 
         // confirm deletion.
-        var getAfterDeleteResponse = await _client.GetByIdAsync($"booking/{id}");
+        var getAfterDeleteResponse = await _client.GetByIdAsync<BookingDto>($"booking/{id}");
         getAfterDeleteResponse.StatusCode.Should().Be(System.Net.HttpStatusCode.NotFound, "Deleted booking should return 404 Not Found");
     }
 }

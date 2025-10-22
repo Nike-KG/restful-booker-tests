@@ -1,4 +1,5 @@
 ﻿using FluentAssertions;
+using RestfulBooker.Tests.Dtos;
 using RestfulBooker.Tests.Utils;
 using System.Diagnostics;
 
@@ -17,7 +18,7 @@ public class PerformanceTests : BaseApiTest
         var acceptableTimeInMilliseconds = 2000;
 
         // Act
-        var response = await _client.GetAsync("booking");
+        var response = await _client.GetAsync<List<BookingDto>>("booking");
         stopwatch.Stop();
 
         // Assert

@@ -1,4 +1,5 @@
 ﻿using FluentAssertions;
+using RestfulBooker.Tests.Dtos;
 using RestfulBooker.Tests.Utils;
 using System.Net;
 using System.Text.Json;
@@ -24,7 +25,7 @@ public class DeleteBookingTests : BaseApiTest
             additionalneeds = "None"
         };
 
-        var createResponse = await _client.PostAsync("booking", payload);
+        var createResponse = await _client.PostAsync<BookingDto>("booking", payload);
         return JsonDocument.Parse(createResponse.Content!)
             .RootElement
             .GetProperty("bookingid")
@@ -44,7 +45,7 @@ public class DeleteBookingTests : BaseApiTest
         deleteResponse.StatusCode.Should().Be(HttpStatusCode.NoContent, "Deleting an existing booking should return 204 No content");
 
         // Verify the booking is deleted
-        var getResponse = await _client.GetByIdAsync($"booking/{id}");
+        var getResponse = await _client.GetByIdAsync<BookingDto>($"booking/{id}");
         getResponse.StatusCode.Should().Be(HttpStatusCode.NotFound, "Deleted booking should return 404 Not Found");
     }
 

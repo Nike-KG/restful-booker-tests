@@ -16,7 +16,7 @@ public class DataDrivenTests : BaseApiTest
     [TestCaseSource(nameof(LoadBookingData))]
     public async Task CreateBooking_WithVariousPayloads_ShouldSucceed(object payload)
     {
-        var response = await _client.PostAsync("booking", payload);
+        var response = await _client.PostAsync<BookingDto>("booking", payload);
         response.IsSuccessful.Should().BeTrue("Booking creation should succeed");
         var id = JsonDocument.Parse(response.Content!)
             .RootElement

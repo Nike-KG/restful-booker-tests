@@ -1,4 +1,5 @@
 ﻿using FluentAssertions;
+using RestfulBooker.Tests.Dtos;
 using RestfulBooker.Tests.Utils;
 using System.Net;
 using System.Text.Json;
@@ -25,7 +26,7 @@ public class GetBookingTests : BaseApiTest
     {
         _test?.Value?.Info("Sending GET /booking?firstname=Jim");
         // Arrange & Act
-        var response = await _client.GetAsync("booking?firstname=Jim");
+        var response = await _client.GetAsync<List<BookingListDto>>("booking?firstname=Jim");
 
         // Assert
         response.IsSuccessful.Should().BeTrue();
@@ -39,7 +40,7 @@ public class GetBookingTests : BaseApiTest
     {
         _test?.Value?.Info("Sending GET /booking?lastname=Brown");
         // Arrange & Act
-        var response = await _client.GetAsync("booking?lastname=Brown");
+        var response = await _client.GetAsync<List<BookingListDto>>("booking?lastname=Brown");
 
         // Assert
         response.IsSuccessful.Should().BeTrue();
@@ -53,7 +54,7 @@ public class GetBookingTests : BaseApiTest
     {
         _test?.Value?.Info("Sending GET /booking?checkin=2018-01-01");
         // Arrange & Act
-        var response = await _client.GetAsync("booking?checkin=2018-01-01");
+        var response = await _client.GetAsync<List<BookingListDto>>("booking?checkin=2018-01-01");
 
         // Assert
         response.IsSuccessful.Should().BeTrue();
@@ -67,7 +68,7 @@ public class GetBookingTests : BaseApiTest
     {
         _test?.Value?.Info("Sending GET /booking?checkout=2019-01-01");
         // Arrange & Act
-        var response = await _client.GetAsync("booking?checkout=2019-01-01");
+        var response = await _client.GetAsync<List<BookingListDto>>("booking?checkout=2019-01-01");
 
         // Assert
         response.IsSuccessful.Should().BeTrue();
@@ -81,7 +82,7 @@ public class GetBookingTests : BaseApiTest
     {
         _test?.Value?.Info("Sending GET /booking?firstname=Get&lastname=User");
         // Arrange & Act
-        var response = await _client.GetAsync("booking?firstname=Get&lastname=User");
+        var response = await _client.GetAsync<List<BookingListDto>>("booking?firstname=Get&lastname=User");
 
         // Assert
         response.IsSuccessful.Should().BeTrue();
@@ -95,7 +96,7 @@ public class GetBookingTests : BaseApiTest
         _test?.Value?.Info("Sending GET /booking?checking=2018-01-01&checkout=2019-01-01");
 
         // Arrange & Act
-        var response = await _client.GetAsync("booking?checkin=2018-01-01&checkout=2019-01-01");
+        var response = await _client.GetAsync<List<BookingListDto>>("booking?checkin=2018-01-01&checkout=2019-01-01");
 
         // Assert
         response.IsSuccessful.Should().BeTrue();
@@ -111,7 +112,7 @@ public class GetBookingTests : BaseApiTest
         var apiClient = new ApiClient();
 
         // Act
-        var response = await apiClient.GetAsync("booking");
+        var response = await apiClient.GetAsync<List<BookingListDto>>("booking");
 
         // Assert
         response.IsSuccessful.Should().BeTrue("API should return 200 OK");
@@ -130,7 +131,7 @@ public class GetBookingTests : BaseApiTest
         var id = createdBookingId;
         _test?.Value?.Info($"Sending GET /booking/{id}");
 
-        var response = await _client.GetAsync($"booking/{id}", isWithCookieHeader: false);
+        var response = await _client.GetAsync<BookingDto>($"booking/{id}", isWithCookieHeader: false);
         response.StatusCode.Should().
             BeOneOf([HttpStatusCode.Forbidden, HttpStatusCode.Unauthorized],
                 "Getting a booking without authentication should return 401 Unauthorized or 403 Forbidden");
@@ -148,7 +149,7 @@ public class GetBookingTests : BaseApiTest
             additionalneeds = "None"
         };
 
-        var createResponse = await _client.PostAsync("booking", payload);
+        var createResponse = await _client.PostAsync<BookingDto>("booking", payload);
         return JsonDocument.Parse(createResponse.Content!)
             .RootElement
             .GetProperty("bookingid")

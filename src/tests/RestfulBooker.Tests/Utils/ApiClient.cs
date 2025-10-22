@@ -1,62 +1,72 @@
-﻿using RestfulBooker.Tests.Dtos;
+﻿using Polly;
+using Polly.Retry;
 using RestSharp;
+using System.Net;
 
 namespace RestfulBooker.Tests.Utils;
 
 public class ApiClient
 {
     private readonly RestClient _client;
-    public ApiClient()
+
+    public ApiClient(Action<string>? logAction = null)
     {
         var baseUrl = ConfigurationHelper.Config["ApiSettings:BaseUrl"];
         _client = new RestClient(baseUrl!);
     }
 
-    public async Task<RestResponse<List<BookingDto>>> GetAsync(string resource)
+    public async Task<RestResponse<List<T>>> GetAsync<T>(string resource)
     {
-        return await GetAsync(resource, true);
+        return await GetAsync<T>(resource, true);
     }
 
-    public async Task<RestResponse<BookingDto>> GetByIdAsync(string resource)
+    public async Task<RestResponse<T>> GetByIdAsync<T>(string resource)
     {
-        return await GetByIdAsync(resource, true);
+        return await GetByIdAsync<T>(resource, true);
     }
 
-    public async Task<RestResponse<BookingDto>> GetByIdAsync(string resource, bool isWithCookieHeader)
-    {
-        var request = new RestRequest(resource, Method.Get);
-        await AddDefaultHeaders(request, isWithCookieHeader);
-
-        return await _client.ExecuteAsync<BookingDto>(request);
-    }
-
-    public async Task<RestResponse<List<BookingDto>>> GetAsync(string resource, bool isWithCookieHeader)
+    public async Task<RestResponse<T>> GetByIdAsync<T>(string resource, bool isWithCookieHeader)
     {
         var request = new RestRequest(resource, Method.Get);
         await AddDefaultHeaders(request, isWithCookieHeader);
 
-        return await _client.ExecuteAsync<List<BookingDto>>(request);
+        var retryPolicy = CreateRetryPolicy<T>();
+
+        return await retryPolicy.ExecuteAsync(() => _client.ExecuteAsync<T>(request));
     }
 
-    public async Task<RestResponse<BookingDto>> PostAsync(string resource, object body)
+    public async Task<RestResponse<List<T>>> GetAsync<T>(string resource, bool isWithCookieHeader)
+    {
+        var request = new RestRequest(resource, Method.Get);
+        await AddDefaultHeaders(request, isWithCookieHeader);
+
+        var retryPolicy = CreateRetryPolicy<List<T>>();
+        return await retryPolicy.ExecuteAsync(() => _client.ExecuteAsync<List<T>>(request));
+    }
+
+    public async Task<RestResponse<T>> PostAsync<T>(string resource, object body)
     {
         var request = new RestRequest(resource, Method.Post)
             .AddJsonBody(body);
         await AddDefaultHeaders(request);
-        return await _client.ExecuteAsync<BookingDto>(request);
+
+        var retryPolicy = CreateRetryPolicy<T>();
+        return await retryPolicy.ExecuteAsync(() => _client.ExecuteAsync<T>(request));
     }
 
-    public async Task<RestResponse> PatchAsync(string resource, object body)
+    public async Task<RestResponse<T>> PatchAsync<T>(string resource, object body)
     {
-        return await PatchAsync(resource, body, true);
+        return await PatchAsync<T>(resource, body, true);
     }
 
-    public async Task<RestResponse<BookingDto>> PatchAsync(string resource, object body, bool isWithCookieHeader)
+    public async Task<RestResponse<T>> PatchAsync<T>(string resource, object body, bool isWithCookieHeader)
     {
         var request = new RestRequest(resource, Method.Patch)
            .AddJsonBody(body);
         await AddDefaultHeaders(request, isWithCookieHeader);
-        return await _client.ExecuteAsync<BookingDto>(request);
+
+        var retryPolicy = CreateRetryPolicy<T>();
+        return await retryPolicy.ExecuteAsync(() =>  _client.ExecuteAsync<T>(request));
     }
 
     public async Task<RestResponse> DeleteAsync(string resource)
@@ -68,9 +78,10 @@ public class ApiClient
     {
         var request = new RestRequest(resource, Method.Delete);
         await AddDefaultHeaders(request, isWithCookieHeader);
-        return await _client.ExecuteAsync(request);
-    }
 
+        var retryPolicy = CreateRetryPolicyForDelete();
+        return await retryPolicy.ExecuteAsync(() => _client.ExecuteAsync(request));
+    }
 
     private async Task AddDefaultHeaders(RestRequest request, bool isWithCookieHeader = true)
     {
@@ -83,4 +94,32 @@ public class ApiClient
 
     }
 
+    private AsyncRetryPolicy<RestResponse<T>> CreateRetryPolicy<T>()
+    {
+        return Policy
+            .HandleResult<RestResponse<T>>(r =>
+                r.StatusCode == HttpStatusCode.RequestTimeout || (int)r.StatusCode >= 500)
+            .WaitAndRetryAsync(
+                retryCount: 3,
+                sleepDurationProvider: attempt => TimeSpan.FromSeconds(Math.Pow(2, attempt)),
+                onRetry: (response, timespan, retryCount, context) =>
+                {
+                    Console.WriteLine($"Retry {retryCount}: {response.Result?.StatusCode}");
+                });
+    }
+
+
+    private AsyncRetryPolicy<RestResponse> CreateRetryPolicyForDelete()
+    {
+        return Policy
+            .HandleResult<RestResponse>(r =>
+                r.StatusCode == HttpStatusCode.RequestTimeout || (int)r.StatusCode >= 500)
+            .WaitAndRetryAsync(
+                retryCount: 3,
+                sleepDurationProvider: attempt => TimeSpan.FromSeconds(Math.Pow(2, attempt)),
+                onRetry: (response, timespan, retryCount, context) =>
+                {
+                    Console.WriteLine($"Retry {retryCount}: {response.Result?.StatusCode}");
+                });
+    }
 }

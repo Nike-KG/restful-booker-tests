@@ -2,14 +2,8 @@
 
 namespace RestfulBooker.Tests.Dtos;
 
-/// <summary>
-/// Represents the payload for creating or updating a booking.
-/// </summary>
-public class BookingDto
+public class CreateBookingDto
 {
-    [JsonPropertyName("bookingid")]
-    public int BookingId { get; set; }
-
     [JsonPropertyName("firstname")]
     public string FirstName { get; set; } = string.Empty;
 

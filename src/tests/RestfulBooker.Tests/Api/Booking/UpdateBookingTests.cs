@@ -1,4 +1,5 @@
 ﻿using FluentAssertions;
+using RestfulBooker.Tests.Dtos;
 using RestfulBooker.Tests.Utils;
 using System.Net;
 using System.Text.Json;
@@ -27,7 +28,7 @@ public class UpdateBookingTests : BaseApiTest
             },
             additionalneeds = "Breakfast"
         };
-        var createResponse = await _client.PostAsync("booking", payload);
+        var createResponse = await _client.PostAsync<BookingDto>("booking", payload);
         createResponse.IsSuccessful.Should().BeTrue("Booking creation should succeed");
         var id = JsonDocument.Parse(createResponse.Content!)
             .RootElement
@@ -43,12 +44,12 @@ public class UpdateBookingTests : BaseApiTest
         var id = await CreateBookingAsync();
 
         var patchPayload = new { firstname = "John" };
-        var patchResponse = await _client.PatchAsync($"booking/{id}", patchPayload);
+        var patchResponse = await _client.PatchAsync<BookingDto>($"booking/{id}", patchPayload);
         patchResponse.IsSuccessful.Should().BeTrue("Booking patch should succeed");
 
 
         // verify via GET.
-        var getResponse = await _client.GetByIdAsync($"booking/{id}");
+        var getResponse = await _client.GetByIdAsync<BookingDto>($"booking/{id}");
         getResponse.IsSuccessful.Should().BeTrue("Booking retrieval should succeed");
         var json = JsonDocument.Parse(getResponse.Content!);
         json.RootElement.GetProperty("firstname").GetString().Should().Be("John", "First name should be updated");
@@ -61,11 +62,11 @@ public class UpdateBookingTests : BaseApiTest
         var id = await CreateBookingAsync();
 
         var patchPayload = new { lastname = "Petty" };
-        var patchResponse = await _client.PatchAsync($"booking/{id}", patchPayload);
+        var patchResponse = await _client.PatchAsync<BookingDto>($"booking/{id}", patchPayload);
         patchResponse.IsSuccessful.Should().BeTrue("Booking patch should succeed");
 
         // verify via GET.
-        var getResponse = await _client.GetByIdAsync($"booking/{id}");
+        var getResponse = await _client.GetByIdAsync<BookingDto>($"booking/{id}");
         getResponse.IsSuccessful.Should().BeTrue("Booking retrieval should succeed");
         var json = JsonDocument.Parse(getResponse.Content!);
         json.RootElement.GetProperty("lastname").GetString().Should().Be("Petty", "Last name should be updated");
@@ -78,11 +79,11 @@ public class UpdateBookingTests : BaseApiTest
         var id = await CreateBookingAsync();
 
         var patchPayload = new { totalprice = 250 };
-        var patchResponse = await _client.PatchAsync($"booking/{id}", patchPayload);
+        var patchResponse = await _client.PatchAsync<BookingDto>($"booking/{id}", patchPayload);
         patchResponse.IsSuccessful.Should().BeTrue("Booking patch should succeed");
 
         // verify via GET.
-        var getResponse = await _client.GetByIdAsync($"booking/{id}");
+        var getResponse = await _client.GetByIdAsync<BookingDto>($"booking/{id}");
         getResponse.IsSuccessful.Should().BeTrue("Booking retrieval should succeed");
         var json = JsonDocument.Parse(getResponse.Content!);
         json.RootElement.GetProperty("totalprice").GetInt32().Should().Be(250, "Total price should be updated");
@@ -95,11 +96,11 @@ public class UpdateBookingTests : BaseApiTest
         var id = await CreateBookingAsync();
 
         var patchPayload = new { depositpaid = false };
-        var patchResponse = await _client.PatchAsync($"booking/{id}", patchPayload);
+        var patchResponse = await _client.PatchAsync<BookingDto>($"booking/{id}", patchPayload);
         patchResponse.IsSuccessful.Should().BeTrue("Booking patch should succeed");
 
         // verify via GET.
-        var getResponse = await _client.GetByIdAsync($"booking/{id}");
+        var getResponse = await _client.GetByIdAsync<BookingDto>($"booking/{id}");
         getResponse.IsSuccessful.Should().BeTrue("Booking retrieval should succeed");
         var json = JsonDocument.Parse(getResponse.Content!);
         json.RootElement.GetProperty("depositpaid").GetBoolean().Should().BeFalse("Deposit paid should be updated");
@@ -125,10 +126,10 @@ public class UpdateBookingTests : BaseApiTest
             additionalneeds = "Late Checkout"
         };
 
-        var patchResponse = await _client.PatchAsync($"booking/{id}", patchPayload);
+        var patchResponse = await _client.PatchAsync<BookingDto>($"booking/{id}", patchPayload);
         patchResponse.IsSuccessful.Should().BeTrue("Booking patch should succeed");
 
-        var getResponse = await _client.GetAsync($"booking/{id}");
+        var getResponse = await _client.GetAsync<List<BookingDto>>($"booking/{id}");
         var json = JsonDocument.Parse(getResponse.Content!);
         json.RootElement.GetProperty("firstname").GetString().Should().Be("Multi", "First name should be updated");
         json.RootElement.GetProperty("lastname").GetString().Should().Be("Update", "Last name should be updated");
@@ -139,7 +140,7 @@ public class UpdateBookingTests : BaseApiTest
     public async Task Patch_NonExistentId_ShouldReturn404()
     {
         var patchPayload = new { firstname = "Ghost" };
-        var response = await _client.PatchAsync("booking/99999", patchPayload);
+        var response = await _client.PatchAsync<BookingDto>("booking/99999", patchPayload);
         response.StatusCode.Should().
             Be(HttpStatusCode.NotFound, "Patching non-existent booking should return 404 Not found");
     }
@@ -148,7 +149,7 @@ public class UpdateBookingTests : BaseApiTest
     public async Task Patch_WithoutAuth_ShouldReturn401Or403()
     {
         var patchPayload = new { firstname = "NoAuth" };
-        var response = await _client.PatchAsync("booking/1", patchPayload, false);
+        var response = await _client.PatchAsync<BookingDto>("booking/1", patchPayload, false);
         response.StatusCode.Should().
             BeOneOf([HttpStatusCode.Forbidden,HttpStatusCode.Unauthorized],
                 "Patching without auth should return 403 Forbidden or 401 Unauthorized");
